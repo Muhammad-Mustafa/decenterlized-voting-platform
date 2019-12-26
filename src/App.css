@@ -1,22 +1,257 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+/*  LANDIND PAGE CSS STARTS FROM HERE !!!          */
+/*NAVBAR*/
+.navbar1 {
+  border-bottom: 1px black solid;
+}
+.card-border {
+  border: 1px black solid;
+  margin: 3px;
+}
+#navlist {
+  padding: 0px 20px 0px 20px;
+}
+.dvp-font {
+  font-size: 24px;
+  font-weight: inherit;
+  padding-right: 117px;
+}
+.bgImg {
+  background-image: url("assets/bgg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100vh;
+  height: 100vh;
+}
+.heading {
+  padding-top: 184px;
+}
+.heading1 {
+  text-align: center;
+  font-size: 114px;
+  font-weight: 500;
+  letter-spacing: 12px;
+  color: black;
+}
+.heading2 {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 400;
+  color: black;
+}
+.secView {
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+.secViewHeading {
+  padding-top: 21px;
   text-align: center;
 }
+.paragraph1 {
+  padding: 81px;
+  text-align: center;
+}
+.footer-color {
+  background-color: #1b2330;
+}
+.color-white {
+  color: #f8ffff;
+}
+/*  LANDIND PAGE CSS ENDS HERE !!!          */
 
-.App-logo {
-  height: 40vmin;
+/*  REG VOTER/Candidate CSS STARTS FROM HERE !!!          */
+
+.voter-reg {
+  font-size: 34px;
+  font-weight: 300;
+  text-align: center;
+}
+.reg-voter-bgImg {
+  background-image: url("assets/RegImg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  height: auto;
+}
+.Landingpg123 {
+  outline: 100vh solid rgba(95, 30, 30, 0.4) !important;
+  outline-offset: -100vh;
+  overflow: hidden;
+  position: relative;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.reg-candidate-bgImg {
+  background-image: url("assets/RegImg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 170vh;
+  height: 170vh;
+}
+.reg-voter-form-card {
+  border: 1px solid black;
+  background: blanchedalmond;
+}
+.btnsub {
+  background-color: chartreuse;
+}
+.photo {
+  height: 334px;
+  width: 370px;
+  background-color: black;
+  border-radius: 50%;
+  margin-left: -22px;
+  margin-top: 148px;
+}
+.bdrr {
+  text-align: center;
+}
+.submitbtn {
+  margin-top: 63px;
+  margin-left: 0px;
+  width: 335px;
+}
+.signup-txt {
+  text-align: center;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 444px;
+  margin-left: 148px;
+  margin-top: 34px;
 }
 
-.App-link {
-  color: #09d3ac;
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 14px 16px;
+}
+.txtwidth {
+  width: 90%;
+}
+.dobtxt {
+  margin-top: 11px;
+}
+.sbmtbtn {
+  width: 90%;
+  margin-left: 23px;
+  margin-bottom: 10px;
+}
+.marginPosi {
+  margin-top: 13px;
+}
+.gender-radio {
+  margin: 0px 3px 12px 12px;
+}
+
+/*  REG VOTER/Candidate CSS End FROM HERE !!!          */
+
+/*  REG AdminLogin CSS Starts FROM HERE !!!          */
+
+.admin-bgImg {
+  background-image: url("assets/RegImg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100vh;
+  height: 100vh;
+}
+
+.Admincard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 444px;
+  margin-left: 428px;
+  margin-top: 143px;
+  background: white;
+}
+/* On mouse-over, add a deeper shadow */
+.Admincard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.adminsbmtbtn {
+  width: 40%;
+  text-align: center;
+  margin-left: 110px;
+  margin-top: 14px;
+}
+
+/* For Login Voter */
+
+.cardLgVoter {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 444px;
+  margin-left: 148px;
+  margin-top: 34px;
+  background: white;
+}
+
+/* On mouse-over, add a deeper shadow */
+.cardLgVoter:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Admin Panal  */
+
+/* .adCard{
+  width: 400px;
+  height: 250px;
+  margin-left: 6px;
+  background-color: burlywood;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+} */
+
+.navbar-AdminPanal {
+  background-color: indigo;
+}
+.navbar-Adminpanal-navlist {
+  padding-left: 200px;
+}
+.navItmes-Adminpanal {
+  padding-left: 30px;
+  font-size: 21px;
+}
+.AdminProfileCard {
+  margin: 93px 0px 0px 8px;
+  width: 300px;
+}
+.admin-avatar {
+  border-radius: 50%;
+  height: 277px;
+  width: 297px;
+}
+.admin-heading {
+  text-align: center;
+}
+.admin-paragraph {
+  text-align: justify;
+}
+/* Voter Protal */
+.navbar-voterProtal{
+  background-color: ForestGreen;
+}
+.navbar-voterPanal-navlist {
+  padding-left: 200px;
+}
+.navItmes-voterProtal {
+  padding-left: 30px;
+  font-size: 21px;
+}
+.VoterProfileCard {
+  margin: 93px 0px 0px 8px;
+  width: 300px;
+}
+.voter-avatar {
+  border-radius: 50%;
+  height: 277px;
+  width: 297px;
 }
