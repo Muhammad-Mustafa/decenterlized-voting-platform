@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { Button } from "react-bootstrap";
+
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -26,22 +28,25 @@ import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
+
 export default function CandidateListAdmin() {
+  // event.preventDefault();
   let history = useHistory();
   let user = firebase.auth().currentUser;
 
   useEffect(() => {
     if (!user) {
       history.push("/AdminLogin");
-    } else {
-      let userId = firebase.auth().currentUser.uid;
-      console.log(userId);
     }
   });
 
+  let userId = firebase.auth().currentUser.uid;
   function candidateList() {
     history.push("/CandidateListAdmin");
   }
+  // function NoListAvaliable(){
+  //   history.push("/NoListAvaliable");
+  // }
   function AdminPanal() {
     history.push("/AdminPanal");
   }
@@ -56,14 +61,10 @@ export default function CandidateListAdmin() {
         alert(error.message);
       });
   }
+
   const columns = [
     {
-      label: "#",
-      field: "id",
-      sort: "asc"
-    },
-    {
-      label: "Name ",
+      label: "Name",
       field: "name",
       sort: "asc"
     },
@@ -88,261 +89,42 @@ export default function CandidateListAdmin() {
       sort: "asc"
     }
   ];
+  let rows_outline_btn = [];
+  firebase
+    .database()
+    .ref("voters")
+    .on("value", snapshot => {
+      snapshot.forEach(v => {
+        // console.log("ForEach suru hone se phael ");
+        if (v.val().isRegistered === "false") {
+          rows_outline_btn.push({
+            name: v.val().name,
+            email: v.val().email,
+            gender: v.val().gender,
+            cnic: v.val().cnic,
+            Approval: (
+              // <a onClick ={ReviewProfile(v.val().Uid)}>View</a>
+              <Button
+                variant="primary"
+                onClick={e => {
+                  // ReviewProfile(v.val());
+                  history.push({
+                    pathname: "/ReviewProfile",
+                    state: { userid: v.val().Uid }
+                  });
+                }}
+              >
+                View
+              </Button>
+              // <MDBBtn color="purple" outline size="sm">
+              //   View
+              // </MDBBtn>
+            )
+          });
+        }
+      });
+    });
 
-  const rows_outline_btn = [
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.comsssssssssssssssssss",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm">
-          View
-        </MDBBtn>
-      )
-    },
-    {
-      id: 1,
-      first: "Mustafa",
-      email: "mustafaraziq30@gmail.com",
-      gender: "Male",
-      cnic: "1111111111111",
-      Approval: (
-        <MDBBtn color="purple" outline size="sm" >
-          View
-        </MDBBtn>
-      )
-    }
-  ];
   return (
     <div>
       <div>
@@ -377,9 +159,6 @@ export default function CandidateListAdmin() {
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
-                <MDBNavItem className="navItmes-Adminpanal">
-                  <MDBNavLink to="">Election</MDBNavLink>
-                </MDBNavItem>
               </MDBNavbarNav>
               <MDBNavbarNav right>
                 <MDBNavItem className="navItmes-Adminpanal">
@@ -392,7 +171,6 @@ export default function CandidateListAdmin() {
           </MDBNavbar>
         </Router>
       </div>
-
       <MDBTable btn>
         <MDBTableHead columns={columns} />
         <MDBTableBody rows={rows_outline_btn} />

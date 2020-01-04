@@ -409,7 +409,14 @@ export default function RegisterVoter() {
         isRegistered +
         "\n"
     );
-
+    function validateName(name) {
+      var isValidName = true;
+      if(/[!@#$%^&*(),.?":{}|<>]/g.test(name) || /\d+/g.test(name)) {
+        isValidName = false;
+      }
+      return isValidName;
+    }
+    
     if (username == "") {
       alert("Please Enter Username!");
     } else if (email == "") {
@@ -436,7 +443,11 @@ export default function RegisterVoter() {
       alert("Invalid CNIC number");
     } else if (Number(CNIC) > 9999999999999) {
       alert("Invalid CNIC number");
-    } else {
+    }
+    else if(validateName(username) === false){
+      alert("You cannot use !@#$%^& or Digits in Username !!!!");
+    }
+     else {
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
@@ -515,7 +526,7 @@ export default function RegisterVoter() {
                     <div className="photo"></div>
                     <button
                       type="button"
-                      class="btn btn-primary btn-lg submitbtn"
+                      className="btn btn-primary btn-lg submitbtn sbtnt"
                     >
                       Click here to take picture
                     </button>
@@ -657,7 +668,7 @@ export default function RegisterVoter() {
                         <p className="font-small white-text d-flex justify-content-end">
                           Have an account?
                           <a
-                            href="#!"
+                            href=""
                             className="green-text ml-1 font-weight-bold"
                             onClick={LoginVoter}
                           >

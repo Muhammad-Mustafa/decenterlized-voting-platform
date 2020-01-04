@@ -103,7 +103,16 @@
   background-color: black;
   border-radius: 50%;
   margin-left: -22px;
-  margin-top: 148px;
+  margin-top: 80px;
+}
+.photoCandidate{
+  height: 334px;
+  width: 370px;
+  background-color: black;
+  border-radius: 50%;
+  margin-left: 87px;
+  margin-top: 80px;
+
 }
 .bdrr {
   text-align: center;
@@ -150,6 +159,9 @@
 }
 .gender-radio {
   margin: 0px 3px 12px 12px;
+}
+.Political-Party-list{
+  width: 50%;
 }
 
 /*  REG VOTER/Candidate CSS End FROM HERE !!!          */
@@ -254,4 +266,31 @@
   border-radius: 50%;
   height: 277px;
   width: 297px;
+}
+
+/*review-Profile*/
+
+.review-Profile-info{
+  background-color: lavender;
+    margin-top: 43px;
+}
+.review-Profile-info-style{
+  padding: 8px 12px 9px 57px;
+}
+.tablebdr{
+  margin-top: 45px;
+  border: 1px solid black;
+}
+.conBtn{
+  margin-top: 15px;
+  margin-left: 60%;
+}
+.Approvebtn{
+  margin: 5px;
+  width: 142px;
+
+}
+.Rejectbtn{
+  margin: 5px;
+  width: 142px;
 }

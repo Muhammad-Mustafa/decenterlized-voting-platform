@@ -12,6 +12,7 @@
 
 import React, { Component, useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import onlineiconimg from ".././assets/onlineicn.png";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -37,7 +38,10 @@ import {
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
+
+
 export default function AdminPanal() {
+
   let history = useHistory();
   let user = firebase.auth().currentUser;
 
@@ -126,7 +130,7 @@ export default function AdminPanal() {
                 waves
               />
               <MDBCardBody>
-                <MDBCardTitle>Admin</MDBCardTitle>
+                <MDBCardTitle>Admin <img src={onlineiconimg} alt="greenICN" /> </MDBCardTitle>
                 <MDBCardText>
                   Some quick example text to build on the card title and make up
                   the bulk of the card&apos;s content.
