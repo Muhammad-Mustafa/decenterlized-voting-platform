@@ -29,11 +29,12 @@ import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
 
-export default function CandidateListAdmin({...props}) {
+export default function ElectionCandidateListAdmin() {
   // event.preventDefault();
   let history = useHistory();
   let user = firebase.auth().currentUser;
   const [list, setlist] = useState([]);
+
 
   useEffect(() => {
     if (!user) {
@@ -41,7 +42,7 @@ export default function CandidateListAdmin({...props}) {
     }
   });
 
-  let userId = firebase.auth().currentUser.uid;
+//   let userId = firebase.auth().currentUser.uid;
   function candidateList() {
     history.push("/CandidateListAdmin");
   }
@@ -90,17 +91,17 @@ export default function CandidateListAdmin({...props}) {
       sort: "asc"
     },
     {
-      label: "bal",
+      label: "Approval",
       field: "approval",
       sort: "asc"
     }
   ];
-
   let rows_outline_btn = [];
   if(list.length <1 ){
+
   firebase
     .database()
-    .ref("voters")
+    .ref("candidate")
     .on("value", snapshot => {
       snapshot.forEach(v => {
         // console.log("ForEach suru hone se phael ");
@@ -117,7 +118,7 @@ export default function CandidateListAdmin({...props}) {
                 onClick={e => {
                   // ReviewProfile(v.val());
                   history.push({
-                    pathname: "/ReviewProfile",
+                    pathname: "/ReviewProfileCandidateAdmin",
                     state: { userid: v.val().Uid }
                   });
                 }}

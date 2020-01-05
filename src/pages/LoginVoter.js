@@ -58,8 +58,11 @@ export default function LoginVoter() {
                         .catch(error => {
                           alert(error.message);
                         });
-                    } else {
+                    }
+                     else {
                       history.push("/VoterPortal");
+                      // console.log("FromLogin", snapshot.val().Uid);
+                      
                     }
                   })
                   .catch(error => {

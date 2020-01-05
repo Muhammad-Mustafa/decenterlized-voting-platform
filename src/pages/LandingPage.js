@@ -13,7 +13,9 @@ function LandingPage() {
   function RegisterVoter() {
     history.push("/RegisterVoter");
   }
-
+  function LoginCandidate(){
+    history.push("/LoginCandidate");
+  }
   function RegisterCandidate() {
     history.push("/RegisterCandidate");
   }
@@ -70,7 +72,7 @@ function LandingPage() {
                       class="dropdown-item"
                       onClick={RegisterCandidate}
                     >
-                      For Condidate
+                      For Candidate
                     </a>
                   </div>
                 </li>
@@ -90,8 +92,8 @@ function LandingPage() {
                     <a href="" class="dropdown-item" onClick={LoginVoter}>
                       For Voter
                     </a>
-                    <a href="" class="dropdown-item">
-                      For Condidate
+                    <a href="" class="dropdown-item" onClick={LoginCandidate}>
+                      For Candidate
                     </a>
                   </div>
                 </li>

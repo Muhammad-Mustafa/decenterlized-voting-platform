@@ -29,7 +29,7 @@ import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
-export default function ReviewProfile(props) {
+export default function ReviewProfileCandidateAdmin(props) {
   console.log(props.location.state.userid);
   let userId = props.location.state.userid;
 
@@ -94,7 +94,7 @@ export default function ReviewProfile(props) {
 
   firebase
     .database()
-    .ref("/voters/" + userId)
+    .ref("/candidate/" + userId)
     .once("value", v => {
       rows_outline_btn.push({
         name: "Name",
@@ -117,6 +117,10 @@ export default function ReviewProfile(props) {
         email: v.val().cnic
       });
       rows_outline_btn.push({
+        name: "Political Party",
+        email: v.val().politicalParty
+      });
+      rows_outline_btn.push({
         name: "constituency",
         email: v.val().constituency
       });
@@ -125,7 +129,7 @@ export default function ReviewProfile(props) {
   function Approved() {
     firebase
       .database()
-      .ref("/voters/" + userId)
+      .ref("/candidate/" + userId)
       .once("value")
       .then(function(snapshot) {
         let dob1 = snapshot.val().dob;
@@ -134,12 +138,12 @@ export default function ReviewProfile(props) {
           alert("The Request is Accepted!");
           firebase
             .database()
-            .ref("/voters/" + userId)
+            .ref("/candidate/" + userId)
             .update({
               isRegistered: "true"
             });
             console.log(age+ "FROM ACCEPT");
-          history.push("/CandidateListAdmin",{isTrue:true});
+          history.push("/ElectionCandidateListAdmin");
         } else {
 
           console.log(age+ "FROM Reject");
@@ -152,7 +156,7 @@ export default function ReviewProfile(props) {
     alert("The Request is Rejected!");
     firebase
       .database()
-      .ref("/voters/" + userId)
+      .ref("/candidate/" + userId)
       .once("value")
       .then(function(snapshot) {
         let email = snapshot.val().email;
@@ -169,9 +173,9 @@ export default function ReviewProfile(props) {
       });
     firebase
       .database()
-      .ref("/voters/" + userId)
+      .ref("/candidate/" + userId)
       .remove();
-    history.push("/CandidateListAdmin");
+    history.push("/ElectionCandidateListAdmin");
   }
   return (
     <div>

@@ -72,7 +72,9 @@ export default function AdminPanal() {
       });
   }  
 
-
+  function ElectionCandidateListAdmin(){
+    history.push("/ElectionCandidateListAdmin");
+  }
 
   return (
     <div>
@@ -100,15 +102,13 @@ export default function AdminPanal() {
                       <MDBDropdownItem href="" onClick={candidateList}>
                         Voters Request
                       </MDBDropdownItem>
-                      <MDBDropdownItem href="">
+                      <MDBDropdownItem href="" onClick={ElectionCandidateListAdmin}>
                         Candidates Requests
                       </MDBDropdownItem>
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
-                <MDBNavItem className="navItmes-Adminpanal">
-                  <MDBNavLink to="">Election</MDBNavLink>
-                </MDBNavItem>
+               
               </MDBNavbarNav>
               <MDBNavbarNav right>
                 <MDBNavItem className="navItmes-Adminpanal">

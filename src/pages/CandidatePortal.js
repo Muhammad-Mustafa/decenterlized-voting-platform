@@ -1,3 +1,4 @@
+
 import React, { Component, useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import onlineiconimg from ".././assets/onlineicn.png";
@@ -28,14 +29,14 @@ import "./../App.css";
 import * as firebase from "firebase";
 
 
-export default function VoterPortal(props) {
+export default function CandidatePortal(props) {
   let history = useHistory();
   
   var user = firebase.auth().currentUser.uid;
 
   useEffect(() => {
     if (!user) {
-      history.push("/LoginVoter");
+      history.push("/LoginCandidate");
     } else {
       // var userId = firebase.auth().currentUser.uid;
       console.log("From VoterPortal",user);
@@ -50,19 +51,21 @@ export default function VoterPortal(props) {
       .auth()
       .signOut()
       .then(() => {
-        history.push("/LoginVoter");
+        history.push("/LoginCandidate");
       })
       .catch(error => {
         alert(error.message);
       });
   } 
 
-  function VoterPortal(){
-    history.push("/VoterPortal");
+  function CandidatePortal(){
+    history.push("/CandidatePortal");
   }
 
-  function CanListVoter(){
-    history.push("/CanListVoter"/*,{userId}*/);
+  
+
+  function CanListCan(){
+    history.push("/CanListCan"/*,{userId}*/);
   }
 
   // console.log(props.location.state.user)
@@ -87,7 +90,7 @@ export default function VoterPortal(props) {
         <Router>
           <MDBNavbar className="navbar-voterProtal" dark expand="md">
             <MDBNavbarBrand>
-              <strong className="white-text">Voter Portal</strong>
+              <strong className="white-text">Candidate Portal</strong>
             </MDBNavbarBrand>
             <MDBNavbarToggler /*onClick={this.toggleCollapse}*/ />
             <MDBCollapse
@@ -96,11 +99,11 @@ export default function VoterPortal(props) {
             >
               <MDBNavbarNav className="navbar-voterPanal-navlist" left>
                 <MDBNavItem className="navItmes-voterProtal" active>
-                  <MDBNavLink to="" onClick={VoterPortal}>Dashboard</MDBNavLink>
+                  <MDBNavLink to="" onClick={CandidatePortal}>Dashboard</MDBNavLink>
                 </MDBNavItem>
     
                 <MDBNavItem className="navItmes-voterProtal">
-                  <MDBNavLink to="" onClick={CanListVoter} >Candidates list</MDBNavLink>
+                  <MDBNavLink to="" onClick={CanListCan} >Candidates list</MDBNavLink>
                 </MDBNavItem>
                 
               </MDBNavbarNav>
@@ -124,7 +127,7 @@ export default function VoterPortal(props) {
                 waves
               />
               <MDBCardBody>
-                <MDBCardTitle>Voter</MDBCardTitle>
+                <MDBCardTitle>Candidate</MDBCardTitle>
                 <MDBCardText>
                   Some quick example text to build on the card title and make up
                   the bulk of the card&apos;s content.
@@ -135,7 +138,7 @@ export default function VoterPortal(props) {
         </div>
 
         <MDBCol sm="8">
-          <h1 className="admin-heading">Welcome to Voter Portal</h1>
+          <h1 className="admin-heading">Welcome to Candidate Portal</h1>
           <p className="admin-paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
             mollitia enim repellat quam similique, facere eligendi? Voluptate
