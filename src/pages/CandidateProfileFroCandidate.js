@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import React, { useEffect } from "react";
+import { MDBRow, MDBCol } from "mdbreact";
 import onlineiconimg from ".././assets/onlineicn.png";
 import {
   MDBNavbar,
@@ -8,28 +8,19 @@ import {
   MDBNavItem,
   MDBNavLink,
   MDBNavbarToggler,
-  MDBCollapse,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBIcon
+  MDBCollapse
 } from "mdbreact";
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import {
-  MDBBtn,
   MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText
+  MDBCardImage
 } from "mdbreact";
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
 export default function CandidateProfileFroCandidate(props) {
     let history = useHistory();
-  var user = firebase.auth().currentUser.uid;
+  var user = firebase.auth().currentUser;
   let userId = props.location.state.userid;
 
 
@@ -37,12 +28,9 @@ export default function CandidateProfileFroCandidate(props) {
     if (!user) {
       history.push("/LoginCandidate");
     } else {
-      // var userId = firebase.auth().currentUser.uid;
       console.log("From VoterPortal", user);
     }
   });
-  // var userId = firebase.auth().currentUser.uid;
-  //     console.log(userId);
 
   function SignOut() {
     firebase
@@ -59,7 +47,7 @@ export default function CandidateProfileFroCandidate(props) {
     history.push("/CandidatePortal");
   }
   function CanListCan() {
-    history.push("/CanListCan" /*,{userId}*/);
+    history.push("/CanListCan");
   }
   const column = [
     {
@@ -113,10 +101,10 @@ export default function CandidateProfileFroCandidate(props) {
               <MDBNavbarBrand>
                 <strong className="white-text">Candidate Portal</strong>
               </MDBNavbarBrand>
-              <MDBNavbarToggler /*onClick={this.toggleCollapse}*/ />
+              <MDBNavbarToggler  />
               <MDBCollapse
                 id="navbarCollapse3"
-                /*isOpen={this.state.isOpen}*/ navbar
+                 navbar
               >
                 <MDBNavbarNav className="navbar-voterPanal-navlist" left>
                   <MDBNavItem className="navItmes-voterProtal" active>

@@ -45,22 +45,49 @@
   color: black;
 }
 .secView {
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
+  /* border-bottom:0.5px solid gray; */
+  /* border-bottom-color: linear-gradient(90deg, #89f7fe 0%,#66a6ff 100% ); */
   width: 100%;
 }
 .secViewHeading {
   padding-top: 21px;
+  padding-bottom: 21px;
+
   text-align: center;
+  color: #4c4c4c;
 }
 .paragraph1 {
+  color: #8a8a8a;
+
   padding: 81px;
-  text-align: center;
+  text-align: justify;
 }
 .footer-color {
   background-color: #1b2330;
 }
 .color-white {
   color: #f8ffff;
+}
+
+.imgstr{
+  height: 265px;
+    margin-top: 80px;
+    width: 603px;
+    border-radius: 21px;
+}
+.imgface{
+  height: 291px;
+    border-radius: 50%;
+    margin-left: 122px;
+    margin-top: 27px;
+    margin-bottom: 37px;
+
+}
+.imgeth{
+  margin-left: 234px;
+  margin-top: 45px;
+
 }
 /*  LANDIND PAGE CSS ENDS HERE !!!          */
 
@@ -267,7 +294,9 @@
   height: 277px;
   width: 297px;
 }
-
+.tablepad{
+  padding: 15px;
+}
 /*review-Profile*/
 
 .review-Profile-info{
@@ -294,3 +323,4 @@
   margin: 5px;
   width: 142px;
 }
+

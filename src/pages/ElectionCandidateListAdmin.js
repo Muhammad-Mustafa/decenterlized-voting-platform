@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { Button } from "react-bootstrap";
 
 import {
@@ -13,16 +12,7 @@ import {
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBIcon
-} from "mdbreact";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText
+  MDBDropdownItem
 } from "mdbreact";
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
@@ -35,25 +25,20 @@ export default function ElectionCandidateListAdmin() {
   let user = firebase.auth().currentUser;
   const [list, setlist] = useState([]);
 
-
   useEffect(() => {
     if (!user) {
       history.push("/AdminLogin");
     }
   });
 
-//   let userId = firebase.auth().currentUser.uid;
   function candidateList() {
     history.push("/CandidateListAdmin");
   }
-  // function NoListAvaliable(){
-  //   history.push("/NoListAvaliable");
-  // }
   function AdminPanal() {
     history.push("/AdminPanal");
   }
 
-  function ElectionCandidateListAdmin(){
+  function ElectionCandidateListAdmin() {
     history.push("/ElectionCandidateListAdmin");
   }
 
@@ -97,43 +82,37 @@ export default function ElectionCandidateListAdmin() {
     }
   ];
   let rows_outline_btn = [];
-  if(list.length <1 ){
-
-  firebase
-    .database()
-    .ref("candidate")
-    .on("value", snapshot => {
-      snapshot.forEach(v => {
-        // console.log("ForEach suru hone se phael ");
-        if (v.val().isRegistered === "false") {
-          rows_outline_btn.push({
-            name: v.val().name,
-            email: v.val().email,
-            gender: v.val().gender,
-            cnic: v.val().cnic,
-            Approval: (
-              // <a onClick ={ReviewProfile(v.val().Uid)}>View</a>
-              <Button
-                variant="primary"
-                onClick={e => {
-                  // ReviewProfile(v.val());
-                  history.push({
-                    pathname: "/ReviewProfileCandidateAdmin",
-                    state: { userid: v.val().Uid }
-                  });
-                }}
-              >
-                View
-              </Button>
-              // <MDBBtn color="purple" outline size="sm">
-              //   View
-              // </MDBBtn>
-            )
-          });
-        }
+  if (list.length < 1) {
+    firebase
+      .database()
+      .ref("candidate")
+      .on("value", snapshot => {
+        snapshot.forEach(v => {
+          // console.log("ForEach suru hone se phael ");
+          if (v.val().isRegistered === "false") {
+            rows_outline_btn.push({
+              name: v.val().name,
+              email: v.val().email,
+              gender: v.val().gender,
+              cnic: v.val().cnic,
+              Approval: (
+                <Button
+                  variant="primary"
+                  onClick={e => {
+                    history.push({
+                      pathname: "/ReviewProfileCandidateAdmin",
+                      state: { userid: v.val().Uid }
+                    });
+                  }}
+                >
+                  View
+                </Button>
+              )
+            });
+          }
+        });
+        setlist(rows_outline_btn);
       });
-      setlist(rows_outline_btn)
-    });
   }
   return (
     <div>
@@ -143,11 +122,8 @@ export default function ElectionCandidateListAdmin() {
             <MDBNavbarBrand>
               <strong className="white-text">Admin Panal</strong>
             </MDBNavbarBrand>
-            <MDBNavbarToggler /*onClick={this.toggleCollapse}*/ />
-            <MDBCollapse
-              id="navbarCollapse3"
-              /*isOpen={this.state.isOpen}*/ navbar
-            >
+            <MDBNavbarToggler />
+            <MDBCollapse id="navbarCollapse3" navbar>
               <MDBNavbarNav className="navbar-Adminpanal-navlist" left>
                 <MDBNavItem className="navItmes-Adminpanal" active>
                   <MDBNavLink to="" onClick={AdminPanal}>
@@ -163,7 +139,10 @@ export default function ElectionCandidateListAdmin() {
                       <MDBDropdownItem href="" onClick={candidateList}>
                         Voters Request
                       </MDBDropdownItem>
-                      <MDBDropdownItem href=""  onClick={ElectionCandidateListAdmin}>
+                      <MDBDropdownItem
+                        href=""
+                        onClick={ElectionCandidateListAdmin}
+                      >
                         Candidates Requests
                       </MDBDropdownItem>
                     </MDBDropdownMenu>

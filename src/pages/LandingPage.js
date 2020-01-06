@@ -1,4 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
+import starImg from "../assets/star.png";
+import faceID from "../assets/faceID.jpg";
+import eth from "../assets/eth.png";
 import "../App.css";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import { useHistory } from "react-router-dom";
@@ -13,7 +16,7 @@ function LandingPage() {
   function RegisterVoter() {
     history.push("/RegisterVoter");
   }
-  function LoginCandidate(){
+  function LoginCandidate() {
     history.push("/LoginCandidate");
   }
   function RegisterCandidate() {
@@ -113,131 +116,75 @@ function LandingPage() {
           </div>
         </div>
       </div>
-
+      <hr />
       <div className="secView">
-        <h1 className="secViewHeading">Our Services</h1>
+        <h1 className="secViewHeading" id="abt">
+          About us
+        </h1>
         <div>
           <div class="row">
             <div class="col-6">
               <p className="paragraph1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                in centralized environments, the results of voting events have
+                always been questionable and perceived differently by voters.
+                Most existing E-Voting systems are based on centralized servers
+                where the voters must trust the organizing authority for the
+                integrity of the results, for a decentralized trustless voting
+                platform that relies on Blockchain technology to solve the trust
+                issues. The main features of this system include ensuring data
+                integrity and transparency, and enforcing one vote per voter. To
+                accomplish this, the Ethereum Virtual Machine (EVM) is used as
+                the Blockchain runtime environment, on which transparent,
+                consistent and deterministic smart contracts will be deployed by
+                organizers for each voting event to run the voting rules. Users
+                are authenticated through Email and faceID.
               </p>
             </div>
             <div class="col-6">
-              <p className="paragraph1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <img className="imgstr" src={starImg} alt="IMG" />
             </div>
           </div>
         </div>
       </div>
-
+      <hr />
       <div className="secView">
         <h1 className="secViewHeading">Key Features</h1>
         <div>
-          <div class="card-group">
-            <div class="card card-border">
-              <img class="card-img-top" src="..." alt="Card image cap" />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-              </div>
-            </div>
-            <div class="card card-border">
-              <img class="card-img-top" src="..." alt="Card image cap" />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-              </div>
-            </div>
-            <div class="card card-border">
-              <img class="card-img-top" src="..." alt="Card image cap" />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="secView">
-        <h1 className="secViewHeading">Our Services</h1>
-        <div>
           <div class="row">
             <div class="col-6">
-              <p className="paragraph1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <img className="imgface" src={faceID} alt="IMG" />
             </div>
             <div class="col-6">
               <p className="paragraph1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Face verification and face dectection is a security feature for
+                the verification of the voter and the candidate on the time of
+                registraction we requir voter and candidate to submit their
+                face-id along with the registraction so that we can check on the
+                time of login that the voter or candidate who is logging is
+                registered and authenticated or not.
               </p>
             </div>
           </div>
         </div>
       </div>
+      <hr />
       <div className="secView">
-        <h1 className="secViewHeading">Our Services</h1>
+        <h1 className="secViewHeading">Ethreum Blockchain</h1>
         <div>
           <div class="row">
             <div class="col-6">
               <p className="paragraph1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                These decentralized applications (or “dapps”) gain the benefits
+                of cryptocurrency and blockchain technology. They can be
+                trustworthy, meaning that once they are “uploaded” to Ethereum,
+                they will always run as programmed. They can control digital
+                assets in order to create new kinds of financial applications.
+                They can be decentralized, meaning that no single entity or
+                person controls them.
               </p>
             </div>
             <div class="col-6">
-              <p className="paragraph1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <img className="imgeth" src={eth} alt="IMG" />
             </div>
           </div>
         </div>
@@ -245,26 +192,41 @@ function LandingPage() {
           <MDBContainer fluid className="text-center text-md-left">
             <MDBRow>
               <MDBCol md="6">
-                <h5 className="title color-white">Footer Content</h5>
+                <h5 className="title color-white">
+                  Decentralized voting plateform
+                </h5>
                 <p className="color-white">
-                  Here you can use rows and columns here to organize your footer
-                  content.
+                  Here you can access some of the links
                 </p>
               </MDBCol>
               <MDBCol md="6" className="color-white">
-                <h5 className="title color-white">Links</h5>
+                <h5 className="title color-white">Links to Follow</h5>
                 <ul>
                   <li className="list-unstyled">
-                    <a>Link 1</a>
+                    <a href="" onClick={RegisterVoter}>
+                      Register Voter{" "}
+                    </a>
                   </li>
                   <li className="list-unstyled">
-                    <a>Link 2</a>
+                    <a href="" onClick={RegisterCandidate}>
+                      Register Candidate
+                    </a>
                   </li>
                   <li className="list-unstyled">
-                    <a>Link 3</a>
+                    <a href="" onClick={LoginVoter}>
+                      Login Voter{" "}
+                    </a>
                   </li>
                   <li className="list-unstyled">
-                    <a>Link 4</a>
+                    <a href="" onClick={LoginCandidate}>
+                      Login Candidate
+                    </a>
+                  </li>
+
+                  <li className="list-unstyled">
+                    <a href="" onClick={AdminLogin}>
+                      Admin Panal
+                    </a>
                   </li>
                 </ul>
               </MDBCol>

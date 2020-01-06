@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBDatePicker } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { useHistory } from "react-router-dom";
 // import auth from "./auth";
 import { isNullOrUndefined } from "util";
@@ -36,7 +36,6 @@ export default function LoginCandidate() {
               .auth()
               .signInWithEmailAndPassword(email, password)
               .then(u => {
-                // if(snapshot.val().isRegistered == false){
                 let userId = firebase.auth().currentUser.uid;
                 console.log(userId);
                 firebase
@@ -58,28 +57,17 @@ export default function LoginCandidate() {
                         .catch(error => {
                           alert(error.message);
                         });
-                    }
-                     else {
+                    } else {
                       history.push("/CandidatePortal");
-                      // console.log("FromLogin", snapshot.val().Uid);
-                      
                     }
                   })
                   .catch(error => {
                     alert(error.message);
                   });
-
-                // }
-                // console.log(snapshot.val().uid);
-                // history.push("/VoterPortal");
               })
               .catch(function(error) {
                 alert(error.message);
               });
-            // console.log(snapshot.val());
-            // snapshot.forEach(function(data) {
-            //     console.log(data.key);
-            // });
           } else {
             alert("Wrong Email!");
           }

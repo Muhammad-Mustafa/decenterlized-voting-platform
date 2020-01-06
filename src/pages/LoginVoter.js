@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBDatePicker } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { useHistory } from "react-router-dom";
 // import auth from "./auth";
 import { isNullOrUndefined } from "util";
@@ -7,8 +7,6 @@ import { isNullOrUndefined } from "util";
 import * as firebase from "firebase";
 
 export default function LoginVoter() {
-  // firebase.auth().signOut()
-
   localStorage.clear();
   let history = useHistory();
 
@@ -36,7 +34,6 @@ export default function LoginVoter() {
               .auth()
               .signInWithEmailAndPassword(email, password)
               .then(u => {
-                // if(snapshot.val().isRegistered == false){
                 let userId = firebase.auth().currentUser.uid;
                 console.log(userId);
                 firebase
@@ -58,79 +55,20 @@ export default function LoginVoter() {
                         .catch(error => {
                           alert(error.message);
                         });
-                    }
-                     else {
+                    } else {
                       history.push("/VoterPortal");
-                      // console.log("FromLogin", snapshot.val().Uid);
-                      
                     }
                   })
                   .catch(error => {
                     alert(error.message);
                   });
-
-                // }
-                // console.log(snapshot.val().uid);
-                // history.push("/VoterPortal");
               })
               .catch(function(error) {
                 alert(error.message);
               });
-            // console.log(snapshot.val());
-            // snapshot.forEach(function(data) {
-            //     console.log(data.key);
-            // });
           } else {
             alert("Wrong Email!");
           }
-          // console.log(snapshot.val());
-
-          // var ref = firebase.database().ref();
-          // ref
-          //   .child("Voter")
-          //   .orderByChild("email")
-          //   .equalTo(email)
-          //   .on("value", function(snapshot) {
-          //     if (isNullOrUndefined(snapshot.val())) {
-          //       alert("Can't find Email!");
-          //     } else {
-          // console.log("running")
-          // firebase
-          //   .auth()
-          //   .signInWithEmailAndPassword(email, password)
-          //   .then(user => {
-          //     // console.log("user",user)
-          //     firebase
-          //       .database()
-          //       .ref(`users/${user.user.uid}`)
-          //       .once("value", val => {
-          //         // console.log(val.val())
-          //         // val.forEach(v => {
-          //         if (val.val().type === "voter") {
-          //           // history.push("/VoterPortal",{user: val.val()});
-          //           let isTrue = true;
-          //           localStorage.setItem("isLoggedin", isTrue);
-          //           history.push({
-          //             pathname: "/VoterPortal",
-          //             state: { user: val.val() }
-          //           });
-          //         }
-          //         // });
-          //       });
-          //     // auth.login(() => {
-          //     //   history.push("/VoterPortal");
-          //     // });
-          //   })
-          //   .catch(function(error) {
-          //     alert(error.message);
-          //   });
-          //     //   .then(() => {});
-          //     console.log(snapshot.val());
-          //     // snapshot.forEach(function(data) {
-          //     //     console.log(data.key);
-          //     // });
-          //   }
-          // });
         });
     }
   }

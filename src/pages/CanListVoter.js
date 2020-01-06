@@ -1,5 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import React, { useState, useEffect } from "react";
 import onlineiconimg from ".././assets/onlineicn.png";
 import { Button } from "react-bootstrap";
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
@@ -11,53 +10,29 @@ import {
   MDBNavItem,
   MDBNavLink,
   MDBNavbarToggler,
-  MDBCollapse,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBIcon
+  MDBCollapse
 } from "mdbreact";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText
-} from "mdbreact";
+
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
 export default function CanListVoter(props) {
   let history = useHistory();
-  var user = firebase.auth().currentUser.uid;
+  var crusr = firebase.auth().currentUser;
   const [list, setlist] = useState([]);
   const [bool, setBool] = useState(false);
 
   useEffect(() => {
-    if (!user) {
+    if (!crusr) {
       history.push("/LoginVoter");
     } else {
-      // var userId = firebase.auth().currentUser.Uid;
       console.log("FromCanList", user);
-      // console.log("================Uid",props.location.state.userId);
     }
   });
-
+  var user = firebase.auth().currentUser.uid;
   UserConstituency(user);
   let rows_outline_btn = [];
-  // var userId = firebase.auth().currentUser.Uid;
-  // console.log("================Uid",props.location.state.userId);
   function UserConstituency(id) {
-    // firebase
-    //   .database()
-    //   .ref("/voters/" + id)
-    //   .once("value", snapshot => {
-    //     console.log("From function", snapshot.val().constituency);
-    //     return snapshot.val().constituency;
-    //   });
-
     firebase
       .database()
       .ref("/voters/" + id)
@@ -65,48 +40,39 @@ export default function CanListVoter(props) {
       .then(function(snapshot) {
         let usrcc = snapshot.val().constituency;
 
-        if (list.length < 1 /*&&!bool*/) {
-            firebase
-              .database()
-              .ref("/candidate/")
-              .on("value", snapshot => {
-                snapshot.forEach(v => {
-                  // console.log("ForEach suru hone se phael ");
-                  if (v.val().constituency === usrcc) {
-                    rows_outline_btn.push({
-                      name: v.val().name,
-                      email: v.val().email,
-                      gender: v.val().gender,
-                      pp: v.val().politicalParty,
-                      Approval: (
-                        // <a onClick ={ReviewProfile(v.val().Uid)}>View</a>
-                        <Button
-                          variant="primary"
-                          onClick={e => {
-                              // ReviewProfile(v.val());
-                              history.push({
-                                pathname: "/CandidateProfileFroVoter",
-                                state: { userid: v.val().Uid }
-                              });
-                          }}
-                        >
-                          View
-                        </Button>
-                        // <MDBBtn color="purple" outline size="sm">
-                        //   View
-                        // </MDBBtn>
-                      )
-                    });
-                  }
-                });
-                // console.log(rows_outline_btn)
-                setlist(rows_outline_btn);
-                // setBool(true);
-                // console.log(list)
+        if (list.length < 1) {
+          firebase
+            .database()
+            .ref("/candidate/")
+            .on("value", snapshot => {
+              snapshot.forEach(v => {
+                // console.log("ForEach suru hone se phael ");
+                if (v.val().constituency === usrcc) {
+                  rows_outline_btn.push({
+                    name: v.val().name,
+                    email: v.val().email,
+                    gender: v.val().gender,
+                    pp: v.val().politicalParty,
+                    Approval: (
+                      <Button
+                        variant="primary"
+                        onClick={e => {
+                          // ReviewProfile(v.val());
+                          history.push({
+                            pathname: "/CandidateProfileFroVoter",
+                            state: { userid: v.val().Uid }
+                          });
+                        }}
+                      >
+                        View
+                      </Button>
+                    )
+                  });
+                }
               });
-          }
-
-
+              setlist(rows_outline_btn);
+            });
+        }
       });
   }
   // const usrConstituency = UserConstituency(user);
@@ -161,49 +127,6 @@ export default function CanListVoter(props) {
     }
   ];
 
-  // console.log("props",props)
- 
-  // if (list.length < 1 /*&&!bool*/) {
-  //   firebase
-  //     .database()
-  //     .ref("candidate")
-  //     .on("value", snapshot => {
-  //       snapshot.forEach(v => {
-  //         // console.log("ForEach suru hone se phael ");
-  //         if (v.val().constituency === usrConstituency) {
-  //           rows_outline_btn.push({
-  //             name: v.val().name,
-  //             email: v.val().email,
-  //             gender: v.val().gender,
-  //             pp: v.val().politicalParty,
-  //             Approval: (
-  //               // <a onClick ={ReviewProfile(v.val().Uid)}>View</a>
-  //               <Button
-  //                 variant="primary"
-  //                 onClick={e => {
-  //                   //   // ReviewProfile(v.val());
-  //                   //   history.push({
-  //                   //     pathname: "/ReviewProfile",
-  //                   //     state: { userid: v.val().Uid }
-  //                   //   });
-  //                 }}
-  //               >
-  //                 View
-  //               </Button>
-  //               // <MDBBtn color="purple" outline size="sm">
-  //               //   View
-  //               // </MDBBtn>
-  //             )
-  //           });
-  //         }
-  //       });
-  //       // console.log(rows_outline_btn)
-  //       setlist(rows_outline_btn);
-  //       // setBool(true);
-  //       // console.log(list)
-  //     });
-  // }
-
   return (
     <div>
       <div>
@@ -242,8 +165,8 @@ export default function CanListVoter(props) {
         </Router>
       </div>
 
-      <MDBTable btn>
-        <MDBTableHead columns={columns} />
+      <MDBTable btn className="tablepad">
+        <MDBTableHead className="tabelhead" columns={columns} />
         <MDBTableBody rows={list} />
       </MDBTable>
     </div>

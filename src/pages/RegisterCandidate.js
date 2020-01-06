@@ -26,8 +26,6 @@ export default function RegisterCandidate() {
     history.push("/LoginCandidate");
   }
 
-
-
   function CandidateReg() {
     console.log(
       "Username = " +
@@ -61,14 +59,11 @@ export default function RegisterCandidate() {
 
     function validateName(name) {
       var isValidName = true;
-      if(/[!@#$%^&*(),.?":{}|<>]/g.test(name) || /\d+/g.test(name)) {
+      if (/[!@#$%^&*(),.?":{}|<>]/g.test(name) || /\d+/g.test(name)) {
         isValidName = false;
       }
       return isValidName;
     }
-
-
-
 
     if (username == "") {
       alert("Please Enter Username!");
@@ -84,10 +79,9 @@ export default function RegisterCandidate() {
       alert("Please Enter your Date of Birth! ");
     } else if (constituency == "") {
       alert("Please Enter your Constituency! ");
-    }else if (PoliticalParty == ""){
-      alert("Please select your PoliticalParty! ");  
-    }
-     else if (!Number(constituency)) {
+    } else if (PoliticalParty == "") {
+      alert("Please select your PoliticalParty! ");
+    } else if (!Number(constituency)) {
       alert("constituency must be a Number");
     } else if (!Number(CNIC)) {
       alert("CNIC must be a Number");
@@ -99,11 +93,9 @@ export default function RegisterCandidate() {
       alert("Invalid CNIC number");
     } else if (Number(CNIC) > 9999999999999) {
       alert("Invalid CNIC number");
-    }
-    else if(validateName(username) === false){
+    } else if (validateName(username) === false) {
       alert("You cannot use !@#$%^& or Digits in Username !!!!");
-    }
-     else {
+    } else {
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
@@ -138,31 +130,10 @@ export default function RegisterCandidate() {
           alert(error.message);
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
   return (
     <div class="background">
       <div class="Landingpg123">
-        {/* <div className="navbar1">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-            <a class="navbar-brand dvp-font">Decentralized Voting Platform</a>
-            <a class="navbar-brand voter-reg">Voters Registraction</a>
-          </nav>{" "}
-        </div>{" "} */}
         <div className="reg-candidate-bgImg">
           <p class=" voter-reg">Register Candidate</p>
           <div class="row">
@@ -211,14 +182,13 @@ export default function RegisterCandidate() {
                     <div class="form-group">
                       <label for="usrEmail">Name of Political Party:</label>
                       <div>
-                        <select className="Political-Party-list" onClick={event =>
-                              setPoliticalParty(event.target.value)
-                            }>
-                          <option
-                            value=""
-                          >
-                            Select
-                          </option>
+                        <select
+                          className="Political-Party-list"
+                          onClick={event =>
+                            setPoliticalParty(event.target.value)
+                          }
+                        >
+                          <option value="">Select</option>
                           <option
                             value="PTI"
                             onSelect={event =>
@@ -266,16 +236,7 @@ export default function RegisterCandidate() {
                         onChange={event => setDOB(event.target.value)}
                       />
                     </div>
-                    {/* <div class="form-group">
-                      <label for="usrEmail">Name of Political Party:</label>
 
-                      <input
-                        type="text"
-                        class="form-control txtwidth"
-                        id="userppname"
-                        placeholder="Your Full Party Name"
-                      />
-                    </div> */}
                     <div class="form-group">
                       <label for="usrCnic">Identity Number (CNIC):</label>
                       <p>eg:1212121212121</p>
@@ -292,11 +253,7 @@ export default function RegisterCandidate() {
                       <label for="Gender">Gender: </label>
                     </div>
 
-                    <RadioGroup
-                      name="gender"
-                      // gender={this.state.gender}
-                      // onChange={this.myChangeHandler}
-                    >
+                    <RadioGroup name="gender">
                       <Radio
                         className="gender-radio"
                         value="Male"
@@ -321,32 +278,6 @@ export default function RegisterCandidate() {
                     </RadioGroup>
                   </div>
 
-                  {/* <div class="form-group ">
-                      <label for="Position" className="marginPosi">
-                        Position:
-                      </label>
-                    </div>
-                    <div class="form-check-inline">
-                      <label class="form-check-label">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          name="optradio"
-                        />
-                        Individual Candidate
-                      </label>
-                    </div>
-                    <div class="form-check-inline">
-                      <label class="form-check-label">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          name="optradio"
-                        />
-                        Party Candidate
-                      </label>
-                    </div>
-                     */}
                   <div class="form-group">
                     <label for="usrConstituency">Your Constituency:</label>
 
@@ -362,29 +293,6 @@ export default function RegisterCandidate() {
                         onChange={event => setConstituency(event.target.value)}
                       />
                     </p>
-                    {/* <p>Upload your Alloted Icon: </p>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span
-                          class="input-group-text"
-                          id="inputGroupFileAddon01"
-                        >
-                          Upload
-                        </span>
-                      </div>
-                      <div class="custom-file">
-                        <input
-                          type="file"
-                          class="custom-file-input"
-                          id="inputGroupFile01"
-                          aria-describedby="inputGroupFileAddon01"
-                        />
-                        <label class="custom-file-label" for="inputGroupFile01">
-                          Choose file
-                        </label>
-                      </div>
-                    </div>
-                  </div> */}
                   </div>
                   <button
                     type="button"
@@ -396,7 +304,11 @@ export default function RegisterCandidate() {
                   <MDBCol md="12">
                     <p className="font-small white-text d-flex justify-content-end">
                       Have an account?
-                      <a href="" onClick={LoginCandidate} className="green-text ml-1 font-weight-bold">
+                      <a
+                        href=""
+                        onClick={LoginCandidate}
+                        className="green-text ml-1 font-weight-bold"
+                      >
                         Log in
                       </a>
                     </p>

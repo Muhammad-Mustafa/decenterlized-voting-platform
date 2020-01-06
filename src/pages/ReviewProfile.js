@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import React, { useEffect } from "react";
+import { MDBRow, MDBCol } from "mdbreact";
 import { Button } from "react-bootstrap";
 
 import {
@@ -13,34 +13,26 @@ import {
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBIcon
+  MDBDropdownItem
 } from "mdbreact";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText
-} from "mdbreact";
+import { MDBCard, MDBCardImage } from "mdbreact";
 import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
 export default function ReviewProfile(props) {
-  console.log(props.location.state.userid);
-  let userId = props.location.state.userid;
+  let user = firebase.auth().currentUser;
 
   useEffect(() => {
-    if (!userId) {
+    if (!user) {
       history.push("/AdminLogin");
     } else {
-      console.log(userId);
+      console.log(user);
     }
   });
-
+  console.log(props.location.state.userid);
+  let userId = props.location.state.userid;
   let history = useHistory();
 
   function candidateList() {
@@ -50,7 +42,7 @@ export default function ReviewProfile(props) {
     history.push("/AdminPanal");
   }
 
-  function ElectionCandidateListAdmin(){
+  function ElectionCandidateListAdmin() {
     history.push("/ElectionCandidateListAdmin");
   }
 
@@ -138,11 +130,10 @@ export default function ReviewProfile(props) {
             .update({
               isRegistered: "true"
             });
-            console.log(age+ "FROM ACCEPT");
-          history.push("/CandidateListAdmin",{isTrue:true});
+          console.log(age + "FROM ACCEPT");
+          history.push("/CandidateListAdmin", { isTrue: true });
         } else {
-
-          console.log(age+ "FROM Reject");
+          console.log(age + "FROM Reject");
           alert("Invalid Age Request cannot be Accepted!!");
         }
       });
@@ -201,7 +192,10 @@ export default function ReviewProfile(props) {
                       <MDBDropdownItem href="" onClick={candidateList}>
                         Voters Request
                       </MDBDropdownItem>
-                      <MDBDropdownItem href=""  onClick={ElectionCandidateListAdmin}>
+                      <MDBDropdownItem
+                        href=""
+                        onClick={ElectionCandidateListAdmin}
+                      >
                         Candidates Requests
                       </MDBDropdownItem>
                     </MDBDropdownMenu>
@@ -253,12 +247,3 @@ export default function ReviewProfile(props) {
     </div>
   );
 }
-
-/* <div className="review-Profile-info">
-            <div className="review-Profile-info-style">
-              <p className="ReviewText"> Name:</p>
-              <p className="ReviewText"> Email:</p>
-              <p className="ReviewText"> Gender:</p>
-              <p className="ReviewText"> DOB:</p>
-              <p className="ReviewText"> CNIC:</p>
-                <p className="ReviewText">Constituency:</p> */

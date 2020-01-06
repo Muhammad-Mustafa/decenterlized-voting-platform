@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import * as firebase from "firebase";
 import { useHistory } from "react-router-dom";
-import auth from "./auth";
 import { isNullOrUndefined } from "util";
-// import { getMaxListeners } from "cluster";
 
 export default function AdminLogin() {
   let history = useHistory();
@@ -49,78 +47,6 @@ export default function AdminLogin() {
         });
     }
   }
-  // } else {
-  //   //redirect to Login
-
-  //   firebase
-  //     .auth()
-  //     .signInWithEmailAndPassword(email, password)
-  //     .then(user => {
-  //       firebase
-  //         .database()
-  //         .ref(`admin/${user.user.uid}`)
-  //         .once("value", snapshot => {
-  //           console.log(snapshot.val());
-  //           // val.forEach(v => {
-  //           // if (val.val().type === "voter") {
-  //             // history.push("/AdminPanal",{user: snapshot.val()});
-  //           // let isTrue =   true
-  //           //   localStorage.setItem("isLoggedin", isTrue)
-  //             history.push( {
-  //               pathname: '/AdminPanal',
-  //               state: { user: snapshot.val() }
-  //             })
-
-  //         });
-  //     })
-  //     .catch(error => {
-  //       alert(error.message);
-  //     });
-
-  // firebase
-  //   .auth()
-  //   .signInWithEmailAndPassword(email, password)
-  //   .then(user => {
-  //     var userId = firebase.auth().currentUser().uid;
-  //     console.log(userId);
-
-  // firebase
-  //   .database()
-  //   .ref(`Admin/${user.user.uid}`)
-  //   .once("value", val => {
-  //     // console.log(val.val())
-  //     // val.forEach(v => {
-  //       if (val.val().type === "voter") {
-  //         // history.push("/VoterPortal",{user: val.val()});
-  //       let isTrue =   true
-  //         localStorage.setItem("isLoggedin", isTrue)
-  //         history.push( {
-  //           pathname: '/VoterPortal',
-  //           state: { user: val.val() }
-  //         })
-  //       }
-  //     // });
-  //   });
-  // auth.login(() => {
-  //   history.push("/VoterPortal");
-  // });
-
-  // firebase.auth().onAuthStateChanged(function(user) {
-  //   if (user) {
-  //     // User is signed in.
-  //   } else {
-  //     // No user is signed in.
-  //     history.push()
-  //   }
-  // });
-
-  // })
-  // .catch(function(error) {
-  //   alert(error.message);
-  // });
-  // });
-  //   }
-  // }
 
   return (
     <div className="admin-bgImg">

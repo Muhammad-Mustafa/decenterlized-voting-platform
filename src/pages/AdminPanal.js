@@ -1,17 +1,5 @@
-// // import React, { useState, useEffect } from "react";
-// // import auth from "./auth";
-// // import { useHistory } from "react-router-dom";
-// // import * as firebase from "firebase";
-
-// // export default function AdminPanal() {
-// //   // console.log(props.location.state.user);
-// //   // let currentUser = firebase.auth().currentUser;
-// //   const [email, setEmail] = useState("");
-// //   const [password, setPassword] = useState("");
-// //   const [name, setName] = useState("");
-
-import React, { Component, useState, useEffect } from "react";
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import React, { useEffect } from "react";
+import { MDBRow, MDBCol } from "mdbreact";
 import onlineiconimg from ".././assets/onlineicn.png";
 import {
   MDBNavbar,
@@ -24,11 +12,9 @@ import {
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBIcon
+  MDBDropdownItem
 } from "mdbreact";
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
@@ -39,9 +25,7 @@ import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
 
-
 export default function AdminPanal() {
-
   let history = useHistory();
   let user = firebase.auth().currentUser;
 
@@ -53,11 +37,11 @@ export default function AdminPanal() {
       console.log(userId);
     }
   });
-  
-  function candidateList(){
+
+  function candidateList() {
     history.push("/CandidateListAdmin");
   }
-  function AdminPanal(){
+  function AdminPanal() {
     history.push("/AdminPanal");
   }
   function SignOut() {
@@ -70,9 +54,9 @@ export default function AdminPanal() {
       .catch(error => {
         alert(error.message);
       });
-  }  
+  }
 
-  function ElectionCandidateListAdmin(){
+  function ElectionCandidateListAdmin() {
     history.push("/ElectionCandidateListAdmin");
   }
 
@@ -84,14 +68,13 @@ export default function AdminPanal() {
             <MDBNavbarBrand>
               <strong className="white-text">Admin Panal</strong>
             </MDBNavbarBrand>
-            <MDBNavbarToggler /*onClick={this.toggleCollapse}*/ />
-            <MDBCollapse
-              id="navbarCollapse3"
-              /*isOpen={this.state.isOpen}*/ navbar
-            >
+            <MDBNavbarToggler />
+            <MDBCollapse id="navbarCollapse3" navbar>
               <MDBNavbarNav className="navbar-Adminpanal-navlist" left>
                 <MDBNavItem className="navItmes-Adminpanal" active>
-                  <MDBNavLink to="" onClick={AdminPanal}>Dashboard</MDBNavLink>
+                  <MDBNavLink to="" onClick={AdminPanal}>
+                    Dashboard
+                  </MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem className="navItmes-Adminpanal">
                   <MDBDropdown>
@@ -102,17 +85,21 @@ export default function AdminPanal() {
                       <MDBDropdownItem href="" onClick={candidateList}>
                         Voters Request
                       </MDBDropdownItem>
-                      <MDBDropdownItem href="" onClick={ElectionCandidateListAdmin}>
+                      <MDBDropdownItem
+                        href=""
+                        onClick={ElectionCandidateListAdmin}
+                      >
                         Candidates Requests
                       </MDBDropdownItem>
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
-               
               </MDBNavbarNav>
               <MDBNavbarNav right>
                 <MDBNavItem className="navItmes-Adminpanal">
-                  <MDBNavLink to="" onClick ={SignOut}>SignOut</MDBNavLink>
+                  <MDBNavLink to="" onClick={SignOut}>
+                    SignOut
+                  </MDBNavLink>
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCollapse>
@@ -130,7 +117,9 @@ export default function AdminPanal() {
                 waves
               />
               <MDBCardBody>
-                <MDBCardTitle>Admin <img src={onlineiconimg} alt="greenICN" /> </MDBCardTitle>
+                <MDBCardTitle>
+                  Admin <img src={onlineiconimg} alt="greenICN" />{" "}
+                </MDBCardTitle>
                 <MDBCardText>
                   Some quick example text to build on the card title and make up
                   the bulk of the card&apos;s content.

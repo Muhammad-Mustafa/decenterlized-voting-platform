@@ -1,6 +1,5 @@
-
-import React, { Component, useState, useEffect } from "react";
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import React, { useEffect } from "react";
+import { MDBRow, MDBCol } from "mdbreact";
 import onlineiconimg from ".././assets/onlineicn.png";
 import {
   MDBNavbar,
@@ -9,15 +8,9 @@ import {
   MDBNavItem,
   MDBNavLink,
   MDBNavbarToggler,
-  MDBCollapse,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBIcon
+  MDBCollapse
 } from "mdbreact";
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
@@ -28,23 +21,17 @@ import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
 
-
 export default function CandidatePortal(props) {
   let history = useHistory();
-  
-  var user = firebase.auth().currentUser.uid;
 
+  var user = firebase.auth().currentUser;
   useEffect(() => {
     if (!user) {
       history.push("/LoginCandidate");
     } else {
-      // var userId = firebase.auth().currentUser.uid;
-      console.log("From VoterPortal",user);
+      console.log("From VoterPortal", user);
     }
   });
-  // var userId = firebase.auth().currentUser.uid;
-  //     console.log(userId);
-
 
   function SignOut() {
     firebase
@@ -56,33 +43,15 @@ export default function CandidatePortal(props) {
       .catch(error => {
         alert(error.message);
       });
-  } 
+  }
 
-  function CandidatePortal(){
+  function CandidatePortal() {
     history.push("/CandidatePortal");
   }
 
-  
-
-  function CanListCan(){
-    history.push("/CanListCan"/*,{userId}*/);
+  function CanListCan() {
+    history.push("/CanListCan" /*,{userId}*/);
   }
-
-  // console.log(props.location.state.user)
-  // let gender1 = props.location.state.user.gender
-  // const [gender, setGender] = useState(gender1);
-  // useEffect(() => {
-  //     var user = firebase.auth().currentUser;
-
-  //     if (user) {
-  //         console.log(user.displayName);
-  //     } else {
-  //         history.push("/Login");
-  //     }
-  // });
-
-
-
 
   return (
     <div>
@@ -92,24 +61,26 @@ export default function CandidatePortal(props) {
             <MDBNavbarBrand>
               <strong className="white-text">Candidate Portal</strong>
             </MDBNavbarBrand>
-            <MDBNavbarToggler /*onClick={this.toggleCollapse}*/ />
-            <MDBCollapse
-              id="navbarCollapse3"
-              /*isOpen={this.state.isOpen}*/ navbar
-            >
+            <MDBNavbarToggler />
+            <MDBCollapse id="navbarCollapse3" navbar>
               <MDBNavbarNav className="navbar-voterPanal-navlist" left>
                 <MDBNavItem className="navItmes-voterProtal" active>
-                  <MDBNavLink to="" onClick={CandidatePortal}>Dashboard</MDBNavLink>
+                  <MDBNavLink to="" onClick={CandidatePortal}>
+                    Dashboard
+                  </MDBNavLink>
                 </MDBNavItem>
-    
+
                 <MDBNavItem className="navItmes-voterProtal">
-                  <MDBNavLink to="" onClick={CanListCan} >Candidates list</MDBNavLink>
+                  <MDBNavLink to="" onClick={CanListCan}>
+                    Candidates list
+                  </MDBNavLink>
                 </MDBNavItem>
-                
               </MDBNavbarNav>
               <MDBNavbarNav right>
                 <MDBNavItem className="navItmes-voterProtal">
-                  <MDBNavLink to="" onClick={SignOut}>SignOut</MDBNavLink>
+                  <MDBNavLink to="" onClick={SignOut}>
+                    SignOut
+                  </MDBNavLink>
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCollapse>
@@ -150,187 +121,3 @@ export default function CandidatePortal(props) {
     </div>
   );
 }
-/*
-
-  // });
-  // firebase
-  //   .database()
-  //   .ref("voters")
-  //   .on("value", snapshot => {
-  //     snapshot.forEach(v =>{
-  //       // console.log("ForEach suru hone se phael ");
-  //       if(v.val().isRegistered === "false"){
-  //         console.log(v.val().Uid +"n"+ v.val().name +"*********");
-  //       }
-  //     })
-  //     });
-
-  // firebase
-  //   .database()
-  //   .ref("voters")
-  //   .on("value", snapshot => {
-  //     snapshot.forEach(v => {
-  //       // console.log("ForEach suru hone se phael ");
-  //       if (v.val().isRegistered === "false") {
-  //         console.log(v.val().Uid + "n" + v.val().name + "*********");
-  //       }
-  //     });
-  //   });
-
-  // useEffect(() => {
-  //   if (!user) {
-  //     history.push("/AdminLogin");
-  //   } else {
-  //     // let userId = firebase.auth().currentUser.uid;
-  //     // console.log(userId);
-  //   }
-  // });
-
-  // function candidateList() {
-  //   history.push("/CandidateListAdmin");
-  // }
-  // // function NoListAvaliable(){
-  // //   history.push("/NoListAvaliable");
-  // // }
-  // function AdminPanal() {
-  //   history.push("/AdminPanal");
-  // }
-  // function SignOut() {
-  //   firebase
-  //     .auth()
-  //     .signOut()
-  //     .then(() => {
-  //       history.push("/AdminLogin");
-  //     })
-  //     .catch(error => {
-  //       alert(error.message);
-  //     });
-  // }
-
-  // // notVerified = () => {
-  // // }
-
-  // const columns = [
-  //   {
-  //     label: "Name",
-  //     field: "name",
-  //     sort: "asc"
-  //   },
-  //   {
-  //     label: "Email",
-  //     field: "email",
-  //     sort: "asc"
-  //   },
-  //   {
-  //     label: "Gender",
-  //     field: "gender",
-  //     sort: "asc"
-  //   },
-  //   {
-  //     label: "CNIC",
-  //     field: "cnic",
-  //     sort: "asc"
-  //   },
-  //   {
-  //     label: "Approval",
-  //     field: "approval",
-  //     sort: "asc"
-  //   }
-  // ];
-  // let rows_outline_btn = [];
-  // firebase
-  //   .database()
-  //   .ref("voters")
-  //   .on("value", snapshot => {
-  //     snapshot.forEach(v => {
-  //       // console.log("ForEach suru hone se phael ");
-  //       if (v.val().isRegistered === "false") {
-  //         rows_outline_btn.push({
-  //           name: v.val().name,
-  //           email: v.val().email,
-  //           gender: v.val().gender,
-  //           cnic: v.val().cnic,
-  //           Approval: (
-  //             // <a onClick ={ReviewProfile(v.val().Uid)}>View</a>
-  //             <Button
-  //               variant="primary"
-  //               onClick={e => {
-  //                 // ReviewProfile(v.val());
-  //                 history.push({
-  //                   pathname: "/ReviewProfile",
-  //                   state: { userid: v.val().Uid }
-  //                 });
-  //               }}
-  //             >
-  //               View
-  //             </Button>
-  //             // <MDBBtn color="purple" outline size="sm">
-  //             //   View
-  //             // </MDBBtn>
-  //           )
-  //         });
-  //       }
-  //     });
-  //   });
-    
-  // // rows_outline_btn.forEach((item) => {
-  // //   console.log(item);
-  // // })
-
-  // return (
-  //   <div>
-  //     <div>
-  //       <Router>
-  //         <MDBNavbar className="navbar-AdminPanal" dark expand="md">
-  //           <MDBNavbarBrand>
-  //             <strong className="white-text">Admin Panal</strong>
-  //           </MDBNavbarBrand>
-  //           <MDBNavbarToggler /*onClick={this.toggleCollapse}*/ //>
-  //           <MDBCollapse
-  //             id="navbarCollapse3"
-  //             /*isOpen={this.state.isOpen}*/ navbar
-  //           >
-  //             <MDBNavbarNav className="navbar-Adminpanal-navlist" left>
-  //               <MDBNavItem className="navItmes-Adminpanal" active>
-  //                 <MDBNavLink to="" onClick={AdminPanal}>
-  //                   Dashboard
-  //                 </MDBNavLink>
-  //               </MDBNavItem>
-  //               <MDBNavItem className="navItmes-Adminpanal">
-  //                 <MDBDropdown>
-  //                   <MDBDropdownToggle nav caret>
-  //                     <div className="d-none d-md-inline">Request List</div>
-  //                   </MDBDropdownToggle>
-  //                   <MDBDropdownMenu className="dropdown-default">
-  //                     <MDBDropdownItem href="" onClick={candidateList}>
-  //                       Voters Request
-  //                     </MDBDropdownItem>
-  //                     <MDBDropdownItem href="">
-  //                       Candidates Requests
-  //                     </MDBDropdownItem>
-  //                   </MDBDropdownMenu>
-  //                 </MDBDropdown>
-  //               </MDBNavItem>
-  //               <MDBNavItem className="navItmes-Adminpanal">
-  //                 <MDBNavLink to="">Election</MDBNavLink>
-  //               </MDBNavItem>
-  //             </MDBNavbarNav>
-  //             <MDBNavbarNav right>
-  //               <MDBNavItem className="navItmes-Adminpanal">
-  //                 <MDBNavLink to="" onClick={SignOut}>
-  //                   SignOut
-  //                 </MDBNavLink>
-  //               </MDBNavItem>
-  //             </MDBNavbarNav>
-  //           </MDBCollapse>
-  //         </MDBNavbar>
-  //       </Router>
-  //     </div>
-  //     <MDBTable btn>
-  //       <MDBTableHead columns={columns} />
-  //       <MDBTableBody rows={rows_outline_btn} />
-  //     </MDBTable>
-  //   </div>
-  // ); 
-
-
