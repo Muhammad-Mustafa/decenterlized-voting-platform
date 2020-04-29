@@ -61,7 +61,8 @@ export default function CandidateProfileFroVoter(props) {
       sort: "asc"
     }
   ];
-
+  let  userImg = "";
+  getUserImage();
   let rows_outline_btn = [];
 
   firebase
@@ -93,6 +94,15 @@ export default function CandidateProfileFroVoter(props) {
         email: v.val().constituency
       });
     });
+    function getUserImage(){
+      firebase
+      .database()
+      .ref("/candidate/" + userId)
+      .once("value", v => {
+       userImg = v.val().Profile
+    });
+    console.log(userImg);
+    }
 
   return (
     <div>
@@ -135,7 +145,7 @@ export default function CandidateProfileFroVoter(props) {
               <MDBCard className="AdminProfileCard">
                 <MDBCardImage
                   className="img-fluid admin-avatar"
-                  src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+                  src={userImg}
                   waves
                 />
               </MDBCard>

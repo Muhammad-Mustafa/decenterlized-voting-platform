@@ -62,7 +62,8 @@ export default function CandidateProfileFroCandidate(props) {
     }
   ];
   let rows_outline_btn = [];
-
+  let  userImg = "";
+  getUserImage();
   firebase
     .database()
     .ref("/candidate/" + userId)
@@ -92,6 +93,16 @@ export default function CandidateProfileFroCandidate(props) {
         email: v.val().constituency
       });
     });
+
+    function getUserImage(){
+      firebase
+      .database()
+      .ref("/candidate/" + userId)
+      .once("value", v => {
+       userImg = v.val().Profile
+    });
+    console.log(userImg);
+    }
   return (
     <div>
       <div>
@@ -136,7 +147,7 @@ export default function CandidateProfileFroCandidate(props) {
               <MDBCard className="AdminProfileCard">
                 <MDBCardImage
                   className="img-fluid admin-avatar"
-                  src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+                src={userImg}
                   waves
                 />
               </MDBCard>

@@ -23,7 +23,6 @@ import "./../App.css";
 import * as firebase from "firebase";
 export default function ReviewProfile(props) {
   let user = firebase.auth().currentUser;
-
   useEffect(() => {
     if (!user) {
       history.push("/AdminLogin");
@@ -34,7 +33,7 @@ export default function ReviewProfile(props) {
   console.log(props.location.state.userid);
   let userId = props.location.state.userid;
   let history = useHistory();
-
+  let userImg="";
   function candidateList() {
     history.push("/CandidateListAdmin");
   }
@@ -83,7 +82,7 @@ export default function ReviewProfile(props) {
   ];
 
   let rows_outline_btn = [];
-
+  getUserImage();
   firebase
     .database()
     .ref("/voters/" + userId)
@@ -113,6 +112,16 @@ export default function ReviewProfile(props) {
         email: v.val().constituency
       });
     });
+  
+    function getUserImage(){
+      firebase
+      .database()
+      .ref("/voters/" + userId)
+      .once("value", v => {
+       userImg = v.val().Profile
+    });
+    console.log(userImg);
+    }
 
   function Approved() {
     firebase
@@ -219,7 +228,7 @@ export default function ReviewProfile(props) {
             <MDBCard className="AdminProfileCard">
               <MDBCardImage
                 className="img-fluid admin-avatar"
-                src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+                src={userImg}
                 waves
               />
             </MDBCard>

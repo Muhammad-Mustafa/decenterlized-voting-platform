@@ -84,7 +84,8 @@ export default function ReviewProfileCandidateAdmin(props) {
   ];
 
   let rows_outline_btn = [];
-
+  let userImg="";
+  getUserImage();
   firebase
     .database()
     .ref("/candidate/" + userId)
@@ -118,7 +119,15 @@ export default function ReviewProfileCandidateAdmin(props) {
         email: v.val().constituency
       });
     });
-
+    function getUserImage(){
+      firebase
+      .database()
+      .ref("/candidate/" + userId)
+      .once("value", v => {
+       userImg = v.val().Profile
+    });
+    console.log(userImg);
+    }
   function Approved() {
     firebase
       .database()
@@ -224,7 +233,7 @@ export default function ReviewProfileCandidateAdmin(props) {
             <MDBCard className="AdminProfileCard">
               <MDBCardImage
                 className="img-fluid admin-avatar"
-                src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+              src={userImg}
                 waves
               />
             </MDBCard>

@@ -56,7 +56,8 @@ export default function LoginVoter() {
                           alert(error.message);
                         });
                     } else {
-                      history.push("/VoterPortal");
+                      // history.push("/VoterPortal");
+                      history.push("/facerecognition",{userType:"voter"})
                     }
                   })
                   .catch(error => {
@@ -85,14 +86,14 @@ export default function LoginVoter() {
                   <MDBRow>
                     {/* <div class="col-5 bdrr"> */}
                     <MDBCol lg="5">
-                      <h1>Take your picture</h1>
+                      {/* <h1>Take your picture</h1>
                       <div className="photo"></div>
                       <button
                         type="button"
                         class="btn btn-primary btn-lg submitbtn"
                       >
                         Click here to take picture
-                      </button>
+                      </button> */}
                       {/* </div> */}
                     </MDBCol>
                     {/* <div class="col-7"> */}
@@ -150,6 +151,8 @@ export default function LoginVoter() {
                           </p>
                         </MDBCol>
                       </div>
+                      <div className="randomeSpace"></div>
+
                       {/* </div> */}
                     </MDBCol>
                     {/* </div> */}

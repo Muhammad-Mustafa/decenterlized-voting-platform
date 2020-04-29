@@ -105,7 +105,7 @@
   height: auto;
 }
 .Landingpg123 {
-  outline: 100vh solid rgba(95, 30, 30, 0.4) !important;
+  /* outline: 100vh solid rgba(95, 30, 30, 0.4) !important; */
   outline-offset: -100vh;
   overflow: hidden;
   position: relative;
@@ -324,3 +324,41 @@
   width: 142px;
 }
 
+/* START WEBCAM */
+.webcam{
+  /* text-align: center;
+  height: 334px;
+  width: 370px;
+  border-radius: 50%; */
+      /* align-items: center; */
+      text-align: center;
+      height: 304px;
+      /* width: 370px; */
+      border-radius: 2%;
+      /* display: flex; */
+      /* flex: inherit; */
+      /* flex-direction: row; */
+      padding-left: 0px;
+      margin-left: 46px;
+      padding-top: -13px;
+      margin-top: 62px;
+}
+.center{
+  text-align: center;
+}
+.bbtn{
+  margin-left: 30px;
+  margin-bottom: 188px;
+}
+/* END WEBCAM */
+
+.randomeSpace{
+  margin-bottom: 250px;
+}
+.h1r{
+  text-align: center;
+  padding-bottom: 60px;
+}
+.bt1{
+  margin-left: -15px;
+}

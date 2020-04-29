@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MDBRow, MDBCol } from "mdbreact";
 import onlineiconimg from ".././assets/onlineicn.png";
+import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -27,16 +29,20 @@ import * as firebase from "firebase";
 
 export default function AdminPanal() {
   let history = useHistory();
+  const[userId, setUserId] = useState("");
   let user = firebase.auth().currentUser;
+
 
   useEffect(() => {
     if (!user) {
       history.push("/AdminLogin");
     } else {
-      let userId = firebase.auth().currentUser.uid;
-      console.log(userId);
+      let userId1 = firebase.auth().currentUser.uid;
+      setUserId(userId1);
     }
   });
+
+  // let userId = firebase.auth().currentUser.uid;
 
   function candidateList() {
     history.push("/CandidateListAdmin");
@@ -59,6 +65,37 @@ export default function AdminPanal() {
   function ElectionCandidateListAdmin() {
     history.push("/ElectionCandidateListAdmin");
   }
+
+  const column = [
+    {
+      label: "Attributes",
+      field: "name",
+      sort: "asc"
+    },
+    {
+      label: "Desc",
+      field: "email",
+      sort: "asc"
+    }
+  ];
+
+  let rows_outline_btn = [];
+
+  firebase
+    .database()
+    .ref("/admin/" + userId)
+    .once("value", v => {
+      console.log(v.val().name);
+      rows_outline_btn.push({
+        name: "Name",
+        email: v.val().name
+      });
+      rows_outline_btn.push({
+        name: "Email",
+        email: v.val().email
+      });
+      
+    });
 
   return (
     <div>
@@ -120,10 +157,6 @@ export default function AdminPanal() {
                 <MDBCardTitle>
                   Admin <img src={onlineiconimg} alt="greenICN" />{" "}
                 </MDBCardTitle>
-                <MDBCardText>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card&apos;s content.
-                </MDBCardText>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
@@ -131,12 +164,19 @@ export default function AdminPanal() {
 
         <MDBCol sm="8">
           <h1 className="admin-heading">Welcome to Admin Panal</h1>
-          <p className="admin-paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
-            mollitia enim repellat quam similique, facere eligendi? Voluptate
-            accusantium error commodi ab reiciendis iste dolorum, illum, velit
-            explicabo incidunt, vel cum!
-          </p>
+          <MDBCard>
+            <MDBCardBody>
+              <MDBCardTitle>
+                Admin <img src={onlineiconimg} alt="online icon" />{" "}
+              </MDBCardTitle>
+              <MDBCardText>
+                <MDBTable>
+                  <MDBTableHead columns={column} />
+                  <MDBTableBody rows={rows_outline_btn} />
+                </MDBTable>
+              </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
         </MDBCol>
       </MDBRow>
     </div>

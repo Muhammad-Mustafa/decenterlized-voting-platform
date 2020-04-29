@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { MDBRow, MDBCol } from "mdbreact";
 import onlineiconimg from ".././assets/onlineicn.png";
+import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -32,6 +33,7 @@ export default function CandidatePortal(props) {
       console.log("From VoterPortal", user);
     }
   });
+  let userId = firebase.auth().currentUser.uid;
 
   function SignOut() {
     firebase
@@ -52,7 +54,61 @@ export default function CandidatePortal(props) {
   function CanListCan() {
     history.push("/CanListCan" /*,{userId}*/);
   }
+  const column = [
+    {
+      label: "Attributes",
+      field: "name",
+      sort: "asc"
+    },
+    {
+      label: "Desc",
+      field: "email",
+      sort: "asc"
+    }
+  ];
 
+  let rows_outline_btn = [];
+  let userImg = "";
+  getUserImage();
+  firebase
+    .database()
+    .ref("/candidate/" + userId)
+    .once("value", v => {
+      console.log(v.val().name);
+      // rows_outline_btn.push({
+      //   name: "Name",
+      //   email: v.val().name
+      // });
+      rows_outline_btn.push({
+        name: "Email",
+        email: v.val().email
+      });
+      rows_outline_btn.push({
+        name: "Gender",
+        email: v.val().gender
+      });
+      rows_outline_btn.push({
+        name: "DOB",
+        email: v.val().dob
+      });
+      rows_outline_btn.push({
+        name: "CNIC",
+        email: v.val().cnic
+      });
+      rows_outline_btn.push({
+        name: "constituency",
+        email: v.val().constituency
+      });
+    });
+    function getUserImage(){
+      firebase
+      .database()
+      .ref("/candidate/" + userId)
+      .once("value", v => {
+       userImg = v.val().Profile
+    });
+    console.log(userImg);
+    }
   return (
     <div>
       <div>
@@ -94,15 +150,10 @@ export default function CandidatePortal(props) {
             <MDBCard className="VoterProfileCard">
               <MDBCardImage
                 className="img-fluid voter-avatar"
-                src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+                src={userImg}
                 waves
               />
               <MDBCardBody>
-                <MDBCardTitle>Candidate</MDBCardTitle>
-                <MDBCardText>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card&apos;s content.
-                </MDBCardText>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
@@ -110,12 +161,19 @@ export default function CandidatePortal(props) {
 
         <MDBCol sm="8">
           <h1 className="admin-heading">Welcome to Candidate Portal</h1>
-          <p className="admin-paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
-            mollitia enim repellat quam similique, facere eligendi? Voluptate
-            accusantium error commodi ab reiciendis iste dolorum, illum, velit
-            explicabo incidunt, vel cum!
-          </p>
+          <MDBCard>
+            <MDBCardBody>
+              <MDBCardTitle>
+                Candidate <img src={onlineiconimg} alt="online icon" />{" "}
+              </MDBCardTitle>
+              <MDBCardText>
+                <MDBTable>
+                  <MDBTableHead columns={column} />
+                  <MDBTableBody rows={rows_outline_btn} />
+                </MDBTable>
+              </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
         </MDBCol>
       </MDBRow>
     </div>

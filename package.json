@@ -6,7 +6,12 @@
     "@material-ui/core": "^4.8.0",
     "antd": "^3.26.3",
     "bootstrap": "^4.4.1",
+    "face-api.js": "^0.16.1",
     "firebase": "^7.5.2",
+    "ganache": "^6.4.4",
+    "ganache-cli": "^6.9.1",
+    "gh-pages": "^2.0.1",
+    "global": "^4.4.0",
     "mdbreact": "^4.23.0",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
@@ -15,7 +20,10 @@
     "react-radio-group": "^3.0.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "react-table-6": "^6.11.0"
+    "react-table-6": "^6.11.0",
+    "react-webcam": "^5.0.1",
+    "truffle": "^5.1.22",
+    "tslib": "^1.9.3"
   },
   "scripts": {
     "start": "react-scripts start",

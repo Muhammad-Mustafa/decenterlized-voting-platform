@@ -96,39 +96,19 @@ export default function RegisterCandidate() {
     } else if (validateName(username) === false) {
       alert("You cannot use !@#$%^& or Digits in Username !!!!");
     } else {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(response => {
-          if (username == "") {
-          } else {
-            var userId = firebase.auth().currentUser.uid;
-
-            firebase
-              .database()
-              .ref("candidate/" + userId)
-              .set({
-                name: username,
-                email: email,
-                password: password,
-                cnic: CNIC,
-                gender: gender,
-                dob: DOB,
-                constituency: constituency,
-                politicalParty: PoliticalParty,
-                isRegistered: isRegistered,
-                Uid: userId
-              });
-          }
-          //redirect to Login
-        })
-        .then(() => {
-          alert("Your Registraction Request is submited sucessfully!");
-          Home();
-        })
-        .catch(function(error) {
-          alert(error.message);
-        });
+      history.push("/RegCamCandidate",{
+        username:username,
+          email: email,
+          password:password,
+          cnic: CNIC,
+          gender: gender,
+          dob: DOB,
+          constituency: constituency,
+          politicalParty: PoliticalParty,
+          isRegistered: isRegistered
+      });
+  
+    
     }
   }
   return (
@@ -138,11 +118,11 @@ export default function RegisterCandidate() {
           <p class=" voter-reg">Register Candidate</p>
           <div class="row">
             <div class="col-5 bdrr">
-              <h1>Take your picture</h1>
+              {/* <h1>Take your picture</h1>
               <div className="photoCandidate"></div>
               <button type="button" class="btn btn-primary btn-lg submitbtn">
                 Click here to take picture
-              </button>
+              </button> */}
             </div>
             <div class="col-7">
               <h1 className="signup-txt">Sign Up Form </h1>

@@ -4,7 +4,7 @@ import "../App.css";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { RadioGroup, Radio } from "react-radio-group";
 import * as firebase from "firebase";
-
+// const storage = firebase.storage();
 export default function RegisterVoter() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -15,9 +15,48 @@ export default function RegisterVoter() {
   const [constituency, setConstituency] = useState("");
   const [isVoted] = useState("false");
   const [isRegistered] = useState("false");
+  const [image, SetImage] = useState("");
+  const [url, setUrl] = useState("");
 
-  // var database = firebase.database().ref();
-  var database = firebase.database();
+  async function handleChange(e) {
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      SetImage(image);
+      const uploadTask = await firebase
+        .storage()
+        .ref(`images/${image.name}`)
+        .put(image);
+
+      var DURL = await uploadTask.ref.getDownloadURL();
+      setUrl(DURL);
+    }
+  }
+
+  function handleUpload() {
+    // const { image } = this.state;
+    const uploadTask = firebase.storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      (error) => {
+        // Error function ...
+        console.log(error);
+      },
+      () => {
+        // complete function ...
+        firebase
+          .storage()
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            setUrl(url);
+            console.log(url);
+          });
+      }
+    );
+    console.log(uploadTask.getDownloadURL);
+  }
+
   let history = useHistory();
 
   function Home() {
@@ -67,7 +106,7 @@ export default function RegisterVoter() {
 
     if (username == "") {
       alert("Please Enter Username!");
-    } else if (email == "") {
+    }else if (email == "") {
       alert("Please Enter your Email! ");
     } else if (password == "") {
       alert("Please Enter your Password! ");
@@ -93,40 +132,57 @@ export default function RegisterVoter() {
       alert("Invalid CNIC number");
     } else if (validateName(username) === false) {
       alert("You cannot use !@#$%^& or Digits in Username !!!!");
-    } else {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(response => {
-          if (username == "") {
-          } else {
-            var userId = firebase.auth().currentUser.uid;
+    }
+    
+    else {
 
-            firebase
-              .database()
-              .ref("voters/" + userId)
-              .set({
-                name: username,
-                email: email,
-                password: password,
-                cnic: CNIC,
-                gender: gender,
-                dob: DOB,
-                constituency: constituency,
-                isVoted: isVoted,
-                isRegistered: isRegistered,
-                Uid: userId
-              });
-          }
-          //redirect to Login
-        })
-        .then(() => {
-          alert("Your Registraction Request is submited sucessfully!");
-          Home();
-        })
-        .catch(function(error) {
-          alert(error.message);
-        });
+      history.push("/RegCam",{
+        username:username,
+          email: email,
+          password:password,
+          cnic: CNIC,
+          gender: gender,
+          dob: DOB,
+          constituency: constituency,
+          isVoted: isVoted,
+          isRegistered: isRegistered
+      });
+
+      
+      // firebase
+      //   .auth()
+      //   .createUserWithEmailAndPassword(email, password)
+      //   .then(response => {
+      //     if (username == "") {
+      //     } else {
+      //       var userId = firebase.auth().currentUser.uid;
+
+      //       firebase
+      //         .database()
+      //         .ref("voters/" + userId)
+      //         .set({
+      //           name: username,
+      //           email: email,
+      //           // password: password,
+      //           cnic: CNIC,
+      //           gender: gender,
+      //           dob: DOB,
+      //           constituency: constituency,
+      //           isVoted: isVoted,
+      //           isRegistered: isRegistered,
+      //           Uid: userId,
+      //           Profile: url
+      //         });
+      //     }
+      //     //redirect to Login
+      //   })
+      //   .then(() => {
+      //     alert("Your Registration Request is submited sucessfully!");
+      //     Home();
+      //   })
+      //   .catch(function(error) {
+      //     alert(error.message);
+      //   });
     }
   }
   return (
@@ -140,14 +196,16 @@ export default function RegisterVoter() {
                 <MDBRow>
                   {/* <div class="col-5 bdrr"> */}
                   <MDBCol lg="5">
-                    <h1>Take your picture</h1>
+                    {/* <h1>Take your picture</h1>
                     <div className="photo"></div>
-                    <button
+                    {/* <button
                       type="button"
                       className="btn btn-primary btn-lg submitbtn sbtnt"
-                    >
-                      Click here to take picture
-                    </button>
+                      onChange={handleChange}
+                    > */}
+                    {/* <input type="file" onChange={handleChange} />
+                    Click here to take picture */}
+                    {/* </button> */}
                     {/* </div> */}
                   </MDBCol>
                   {/* <div class="col-7"> */}
@@ -165,7 +223,7 @@ export default function RegisterVoter() {
                               name="username"
                               placeholder="Full Name"
                               // onChange={this.myChangeHandler}
-                              onChange={event =>
+                              onChange={(event) =>
                                 setUsername(event.target.value)
                               }
                             />
@@ -179,7 +237,7 @@ export default function RegisterVoter() {
                               name="email"
                               placeholder="abc@gmail.com"
                               // onChange={this.myChangeHandler}
-                              onChange={event => setEmail(event.target.value)}
+                              onChange={(event) => setEmail(event.target.value)}
                             />
                           </div>
                           <div class="form-group">
@@ -191,7 +249,7 @@ export default function RegisterVoter() {
                               name="password"
                               placeholder="Your Password"
                               // onChange={this.myChangeHandler}
-                              onChange={event =>
+                              onChange={(event) =>
                                 setPassword(event.target.value)
                               }
                             />
@@ -206,7 +264,7 @@ export default function RegisterVoter() {
                               placeholder="1212121212121"
                               name="CNIC"
                               // onChange={this.myChangeHandler}
-                              onChange={event => setCNIC(event.target.value)}
+                              onChange={(event) => setCNIC(event.target.value)}
                             />
                           </div>
 
@@ -223,21 +281,27 @@ export default function RegisterVoter() {
                               className="gender-radio"
                               value="Male"
                               // onChange={this.myChangeHandler}
-                              onChange={event => setGender(event.target.value)}
+                              onChange={(event) =>
+                                setGender(event.target.value)
+                              }
                             />
                             Male
                             <Radio
                               className="gender-radio"
                               value="Female"
                               // onChange={this.myChangeHandler}
-                              onChange={event => setGender(event.target.value)}
+                              onChange={(event) =>
+                                setGender(event.target.value)
+                              }
                             />
                             Female
                             <Radio
                               className="gender-radio"
                               value="Other"
                               // onChange={this.myChangeHandler}
-                              onChange={event => setGender(event.target.value)}
+                              onChange={(event) =>
+                                setGender(event.target.value)
+                              }
                             />
                             Other
                           </RadioGroup>
@@ -251,7 +315,7 @@ export default function RegisterVoter() {
                             class="form-control txtwidth"
                             id="usrEmail"
                             // onChange={this.myChangeHandler}
-                            onChange={event => setDOB(event.target.value)}
+                            onChange={(event) => setDOB(event.target.value)}
                           />
                         </div>
                         <div class="form-group">
@@ -268,7 +332,7 @@ export default function RegisterVoter() {
                               id="usrName"
                               placeholder="eg:1, 15 (Only Number Required)"
                               // onChange={this.myChangeHandler}
-                              onChange={event =>
+                              onChange={(event) =>
                                 setConstituency(event.target.value)
                               }
                             />

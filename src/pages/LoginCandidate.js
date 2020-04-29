@@ -58,7 +58,8 @@ export default function LoginCandidate() {
                           alert(error.message);
                         });
                     } else {
-                      history.push("/CandidatePortal");
+                      // history.push("/CandidatePortal");
+                      history.push("/facerecognition",{userType:"candidate"})
                     }
                   })
                   .catch(error => {
@@ -87,18 +88,18 @@ export default function LoginCandidate() {
                   <MDBRow>
                     {/* <div class="col-5 bdrr"> */}
                     <MDBCol lg="5">
-                      <h1>Take your picture</h1>
-                      <div className="photo"></div>
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-lg submitbtn"
-                      >
-                        Click here to take picture
-                      </button>
+                    {/* <h1>Take your picture</h1>
+                    <div className="photo"></div>
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-lg submitbtn"
+                    >
+                      Click here to take picture
+                    </button> */}
                       {/* </div> */}
                     </MDBCol>
                     {/* <div class="col-7"> */}
-                    <MDBCol lg="7">
+                    <MDBCol lg="7" className="randomeSpace">
                       <h1 className="signup-txt">Sign Up Form </h1>
                       <div class="cardLgVoter">
                         <div class="container">

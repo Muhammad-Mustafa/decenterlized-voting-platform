@@ -5,43 +5,54 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import LandingPage from "./pages/LandingPage";
 import RegVoter from "./pages/RegisterVoter";
 import RegisterCandidate from "./pages/RegisterCandidate";
-import CandidateProfileFroVoter from './pages/CandidateProfileFroVoter';
+import CandidateProfileFroVoter from "./pages/CandidateProfileFroVoter";
 import AdminLogin from "./pages/AdminLogin";
 import AdminPanal from "./pages/AdminPanal";
-import CandidatePortal from './pages/CandidatePortal';
+import CandidatePortal from "./pages/CandidatePortal";
 import LoginVoter from "./pages/LoginVoter";
 import VoterPortal from "./pages/VoterPortal";
 import CanListVoter from "./pages/CanListVoter";
 import CandidateProfileFroCandidate from "./pages/CandidateProfileFroCandidate";
-import CanListCan from './pages/CanListCan';
-import LoginCandidate from './pages/LoginCandidate';
+import CanListCan from "./pages/CanListCan";
+import LoginCandidate from "./pages/LoginCandidate";
 import Error404 from "./pages/Error404.js";
 import CandidateListAdmin from "./pages/CandidateListAdmin.js";
 import ReviewProfile from "./pages/ReviewProfile";
 import ElectionCandidateListAdmin from "./pages/ElectionCandidateListAdmin";
 import ReviewProfileCandidateAdmin from "./pages/ReviewProfileCandidateAdmin";
+import FaceRecognition from "./views/cameraFaceDetect";
+import RegCam from "./pages/RegCam";
+import SucessfullVoting from './pages/SucessfullVoting'
+import Voting from "./pages/Voting";
+import RegCamCandidate from "./pages/RegCamCandidate";
 // import { ProtectedRoute } from './pages/Protected.routes';
 
 import "./App.css";
 import firebaseConfig from "./Firebase/firebaseConnection";
 import * as firebase from "firebase";
+import createHistory from "history/createBrowserHistory";
 firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 
 function App() {
   return (
-    <Router>
+    <Router history={createHistory({ basename: process.env.PUBLIC_URL })}>
       <div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/Home" component={LandingPage} />
+          <Route exact path="/facerecognition" component={FaceRecognition} />
           <Route exact path="/RegisterVoter" component={RegVoter} />
           <Route
             exact
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
-          <Route exact path="/CandidateProfileFroCandidate" component={CandidateProfileFroCandidate} />
+          <Route
+            exact
+            path="/CandidateProfileFroCandidate"
+            component={CandidateProfileFroCandidate}
+          />
           <Route exact path="/CandidatePortal" component={CandidatePortal} />
           <Route exact path="/CanListVoter" component={CanListVoter} />
           <Route exact path="/LoginCandidate" component={LoginCandidate} />
@@ -55,10 +66,26 @@ function App() {
             path="/CandidateListAdmin"
             component={CandidateListAdmin}
           />
-          <Route exact path="/CandidateProfileFroVoter" component={CandidateProfileFroVoter} />
-          <Route exact path="/ReviewProfileCandidateAdmin" component={ReviewProfileCandidateAdmin} />
-          <Route exact path="/ElectionCandidateListAdmin" component={ElectionCandidateListAdmin} />
+          <Route
+            exact
+            path="/CandidateProfileFroVoter"
+            component={CandidateProfileFroVoter}
+          />
+          <Route
+            exact
+            path="/ReviewProfileCandidateAdmin"
+            component={ReviewProfileCandidateAdmin}
+          />
+          <Route
+            exact
+            path="/ElectionCandidateListAdmin"
+            component={ElectionCandidateListAdmin}
+          />
+          <Route exact path="/SucessfullVoting" component={SucessfullVoting} />
           <Route exact path="/ReviewProfile" component={ReviewProfile} />
+          <Route exact path="/RegCamCandidate" component={RegCamCandidate} />
+          <Route exact path="/RegCam" component={RegCam} />
+          <Route exact path ="/Voting" component={Voting} />
           <Route exact path="*" component={Error404} />
         </Switch>
       </div>

@@ -32,7 +32,7 @@ export default function CandidateListAdmin({ ...props }) {
     }
   });
 
-  let userId = firebase.auth().currentUser.uid;
+  // let userId = firebase.auth().currentUser.uid;
   function candidateList() {
     history.push("/CandidateListAdmin");
   }
@@ -79,7 +79,7 @@ export default function CandidateListAdmin({ ...props }) {
       sort: "asc"
     },
     {
-      label: "bal",
+      label: "Approve",
       field: "approval",
       sort: "asc"
     }
