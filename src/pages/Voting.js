@@ -22,7 +22,28 @@ import * as firebase from "firebase";
 
 export default function Voting() {
   const [list, setlist] = useState([]);
+  const [voted, setVoted] = useState("false");
+  const [election, setElection] = useState("");
 
+  useEffect(() => {
+    const uid = firebase.auth().currentUser.uid;
+    
+    console.log("Current User Id" + firebase.auth().currentUser.uid);
+    firebase
+    .database()
+    .ref("/voters/" + uid)
+    .on("value",(snapshot) => {
+      console.log(snapshot.val().isVoted);
+      setVoted(snapshot.val().isVoted);
+    });
+    firebase
+      .database()
+      .ref("/election/")
+      .on("value",(snapshot) => {
+        console.log(snapshot.val().status);
+        setElection(snapshot.val().status);
+    });
+  },[])
   let history = useHistory();
 
   function Vote() {
@@ -126,7 +147,36 @@ export default function Voting() {
       sort: "asc",
     },
   ];
+  let r = null
+  const List = (
+    <MDBTable btn className="tablepad">
+    <MDBTableHead className="tabelhead" columns={columns} />
+    <MDBTableBody rows={list} />
+    </MDBTable>
+  )
 
+  const sucessfullSubmit = (
+    <h1>You have sucessfully submited the vote !</h1>
+  )
+
+  const noElection = (
+  <h1>Not Election for now</h1>
+  )
+
+  const electionEnd = (
+    <h1>Elections are finished now you can view the Results!!!</h1>
+  )
+  if(election == "deployed"){
+    if(voted == "true"){
+      r = sucessfullSubmit;
+    }else if(voted == "false"){
+      history.push("/QrcodeReader");
+    }
+  }else if(election == "finished"){
+    r = electionEnd;
+  }else{
+    r=noElection;
+  }
   return (
     <div>
       <div>
@@ -171,11 +221,14 @@ export default function Voting() {
           </MDBNavbar>
         </Router>
       </div>
+      <div>
+      {r}
+      </div>
 
-      <MDBTable btn className="tablepad">
+      {/* <MDBTable btn className="tablepad">
         <MDBTableHead className="tabelhead" columns={columns} />
         <MDBTableBody rows={list} />
-      </MDBTable>
+      </MDBTable> */}
     </div>
   );
 }

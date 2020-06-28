@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { MDBRow, MDBCol } from "mdbreact";
 import { Button } from "react-bootstrap";
-
+import emailjs from 'emailjs-com';
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -136,6 +136,7 @@ export default function ReviewProfileCandidateAdmin(props) {
       .then(function(snapshot) {
         let dob1 = snapshot.val().dob;
         let age = calculate_age(dob1);
+        let email = snapshot.val().email;
         if (age >= 18) {
           alert("The Request is Accepted!");
           firebase
@@ -144,8 +145,24 @@ export default function ReviewProfileCandidateAdmin(props) {
             .update({
               isRegistered: "true"
             });
-          console.log(age + "FROM ACCEPT");
-          history.push("/ElectionCandidateListAdmin");
+            var params = {
+              to_email: email,
+            }
+              var service_id = "default_service";
+              var user_id = "user_lb9GeK9CH5WP2u1U7wCuO";
+
+              // var service_id = "default_service";
+              var template_id = "decentralized_voting_platform"; 
+              emailjs.send(service_id, template_id,params,user_id)
+            .then(function(){ 
+               console.log("Sent!");
+               alert("The Request is Accepted!");
+
+                console.log(age + "FROM ACCEPT");
+                history.push("/ElectionCandidateListAdmin");
+              }, function(err) {
+               console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+            });
         } else {
           console.log(age + "FROM Reject");
           alert("Invalid Age Request cannot be Accepted!!");

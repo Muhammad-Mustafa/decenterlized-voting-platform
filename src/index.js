@@ -4,6 +4,11 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import {BrowserRouter} from 'react-router-dom'
+
+import QrcodeReader from './pages/Component/QrcodeReader'
+import BlockchainList from './pages/Component/BlockchainList'
+import Result from "./pages/Component/Result";
+
 // import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 // import LandingPage from "./pages/LandingPage";
 // import RegVoter from "./pages/RegisterVoter";

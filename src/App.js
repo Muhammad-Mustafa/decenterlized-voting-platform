@@ -24,9 +24,13 @@ import FaceRecognition from "./views/cameraFaceDetect";
 import RegCam from "./pages/RegCam";
 import SucessfullVoting from './pages/SucessfullVoting'
 import Voting from "./pages/Voting";
+import QrcodeReader from "./pages/Component/QrcodeReader";
+
 import RegCamCandidate from "./pages/RegCamCandidate";
 // import { ProtectedRoute } from './pages/Protected.routes';
-
+import QrCodeGenerator from "./pages/Component/QrcodeGenerator"
+import BlockchainList from "./pages/Component/BlockchainList"
+import Result from "./pages/Component/Result"
 import "./App.css";
 import firebaseConfig from "./Firebase/firebaseConnection";
 import * as firebase from "firebase";
@@ -48,6 +52,11 @@ function App() {
             path="/RegisterCandidate"
             component={RegisterCandidate}
           />
+          <Route exact path="/QrCodeGenerator" component={QrCodeGenerator} />
+          <Route exact path="/QrcodeReader" component={QrcodeReader} />
+          <Route exact path="/BlockchainList" component={BlockchainList} />
+          <Route exact path="/Result" component={Result} />
+
           <Route
             exact
             path="/CandidateProfileFroCandidate"

@@ -27,6 +27,8 @@ export default function VoterPortal(props) {
   const [load, setLoad] = useState(false);
   const [img, setImg] = useState("");
   var cuser = firebase.auth().currentUser;
+
+  console.log("Current User !!!!"+ cuser);
   // if(!cuser){
   //   history.push("/LoginVoter");
   // }
@@ -44,6 +46,8 @@ export default function VoterPortal(props) {
   // var user = firebase.auth().currentUser.uid;
 
   let userId = firebase.auth().currentUser.uid;
+
+  console.log("UserId!!!!"+ userId);
   function Vote() {
     history.push("/Voting");
   }
@@ -58,6 +62,9 @@ export default function VoterPortal(props) {
         alert(error.message);
       });
   }
+  function Result(){
+    history.push("/Result");
+  }
 
   function VoterPortal() {
     history.push("/VoterPortal");
@@ -65,6 +72,14 @@ export default function VoterPortal(props) {
 
   function CanListVoter() {
     history.push("/CanListVoter" /*,{userId}*/);
+  }
+
+  function QrCodeGenerator(){
+
+    history.push({
+          pathname: "/QrCodeGenerator",
+          // state: userId,
+        });
   }
 
   const column = [
@@ -160,6 +175,16 @@ export default function VoterPortal(props) {
                 <MDBNavItem className="navItmes-voterProtal">
                 <MDBNavLink to="" onClick={Vote}>
                   Vote
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem className="navItmes-voterProtal">
+                <MDBNavLink to="" onClick={QrCodeGenerator}>
+                  QR-Code
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem className="navItmes-voterProtal">
+                <MDBNavLink to="" onClick={Result}>
+                  Result
                 </MDBNavLink>
               </MDBNavItem>
               </MDBNavbarNav>
