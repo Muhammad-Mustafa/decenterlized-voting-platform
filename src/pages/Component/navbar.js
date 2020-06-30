@@ -14,65 +14,46 @@ import {
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../../App.css";
 
+export default function navbar(){
+    let history = useHistory();
 
-
-export default function QrcodeGenerator(){
-    
-  useEffect(() => {
-    let userId = firebase.auth().currentUser.uid;
-
-    console.log("UserId!!!! From Qr Code!!"+ userId);
-  })
-  let history = useHistory();
-  function Vote() {
-    history.push("/Voting");
-  }
-  function SignOut() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        history.push("/LoginVoter");
-      })
-      .catch(error => {
-        alert(error.message);
-      });
-  }
-  function Result(){
-    history.push("/Result");
-  }
-
-  function VoterPortal() {
-    history.push("/VoterPortal");
-  }
-
-  function CanListVoter() {
-    history.push("/CanListVoter" /*,{userId}*/);
-  }
-
-  function QrCodeGenerator(){
-
-    history.push({
-          pathname: "/QrCodeGenerator",
-          // state: userId,
+    function Vote() {
+      history.push("/Voting");
+    }
+    function SignOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          history.push("/LoginVoter");
+        })
+        .catch(error => {
+          alert(error.message);
         });
-  }
-
-    const downloadQR = () => {
-        const canvas = document.getElementById("123456");
-        const pngUrl = canvas
-          .toDataURL("image/png")
-          .replace("image/png", "image/octet-stream");
-        let downloadLink = document.createElement("a");
-        downloadLink.href = pngUrl;
-        downloadLink.download = "123456.png";
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-      };
+    }
+    function Result(){
+      history.push("/Result");
+    }
+  
+    function VoterPortal() {
+      history.push("/VoterPortal");
+    }
+  
+    function CanListVoter() {
+      history.push("/CanListVoter" /*,{userId}*/);
+    }
+  
+    function QrCodeGenerator(){
+  
+      history.push({
+            pathname: "/QrCodeGenerator",
+            // state: userId,
+          });
+    }
+    
     return(
-      <div>
-      <div>
+        <div>
+                  <div>
         <Router>
           <MDBNavbar className="navbar-voterProtal" dark expand="md">
             <MDBNavbarBrand>
@@ -122,41 +103,7 @@ export default function QrcodeGenerator(){
           </MDBNavbar>
         </Router>
       </div>
-        <div style={{
-                // margin
-                width: "100%",
-                height: "100vh",
-                padding: "0",
-                marginTop: "50px",
-                marginLeft: "50px",
-            }}
-              >
-        <QRCode
-        style={{
-          marginLeft: "400px",
-          width: "400px",
-          height: "500px",
-          margindisplay: "flex",
-      flexDirection: "column",
 
-      alignContent: "center",
-      alignItems: "center",
-      }}
-            id="123456"
-            value="mustafaraziq30@gmail.com"
-            size={290}
-            level={"H"}
-            includeMargin={true}
-        />
-        <div>
-        <input
-        style={{
-          marginLeft: "400px",
-          width: "400px",
-      }}
-        type="button" value="Download QR" onClick={downloadQR} />
-        </div>
-        </div>        
         </div>
     )
 }

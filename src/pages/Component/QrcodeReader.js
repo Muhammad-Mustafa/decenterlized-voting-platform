@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import QrReader from "react-qr-reader";
 import {useHistory, withRouter, Link} from 'react-router-dom'
-
+// import navbar from "./navbar"
  class QrcodeReader extends Component {
     componentDidMount(){
         // console.log("READER!!!!!!!" + firebase.auth().currentUser.uid)
@@ -39,15 +39,47 @@ import {useHistory, withRouter, Link} from 'react-router-dom'
     render(){
     
         return(
+            
             <div style={{
-                display: "flex",
+                // margin
+                width: "100%",
+                height: "100vh",
+                padding: "0",
+                marginTop: "50px",
+                marginLeft: "50px",
+            }}>
+            <div style={{
+                    marginLeft: "350px",
+                    
+                    margindisplay: "flex",
                 flexDirection: "column",
-                // alignContent: "center",
-                // alignItems: "center",
-                width: "200px",
-                height: "200px",
+
+                alignContent: "center",
+                alignItems: "center",
+                }}>
+                <h1>Please Insert Your Qr Code</h1>
+            </div>
+            <div style={{
+                // display: "flex",
+                // flexDirection: "column",
+
+                // // alignContent: "center",
+                // // alignItems: "center",
+                // width: "400px",
+                // height: "400px",
+            
             }}>
                 <QrReader
+                style={{
+                    marginLeft: "400px",
+                    width: "400px",
+                    height: "500px",
+                    margindisplay: "flex",
+                flexDirection: "column",
+
+                alignContent: "center",
+                alignItems: "center",
+                }}
                     ref="qrReader1"
                     delay={this.state.delay}
                     // previewStyle={previewStyle}
@@ -55,9 +87,20 @@ import {useHistory, withRouter, Link} from 'react-router-dom'
                     onScan={this.handleScan}
                     legacyMode={true}
                 />
-                <input type="button" value="Insert the  QR Code" onClick={this.openImageDialog.bind(this)} />
-                <Link to="/BlockchainList" ><input type="button" value="Submit the QR Code"/></Link>
+                <input
+                style={{
+                    marginLeft: "400px",
+                    width: "200px",
+                }}
+                type="button" value="Insert the  QR Code" onClick={this.openImageDialog.bind(this)} />
+                <Link to="/BlockchainList" ><input
+                 style={{
+                    // marginLeft: "400px",
+                    width: "200px",
+                }}
+                 type="button" value="Submit the QR Code"/></Link>
                 {/* <p>the result is  {this.state.result}</p> */}
+            </div>
             </div>
         )
     }

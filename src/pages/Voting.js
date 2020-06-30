@@ -49,7 +49,6 @@ export default function Voting() {
   function Vote() {
     history.push("/Voting");
   }
-
   function SignOut() {
     firebase
       .auth()
@@ -57,9 +56,12 @@ export default function Voting() {
       .then(() => {
         history.push("/LoginVoter");
       })
-      .catch((error) => {
+      .catch(error => {
         alert(error.message);
       });
+  }
+  function Result(){
+    history.push("/Result");
   }
 
   function VoterPortal() {
@@ -67,9 +69,16 @@ export default function Voting() {
   }
 
   function CanListVoter() {
-    history.push("/CanListVoter");
+    history.push("/CanListVoter" /*,{userId}*/);
   }
 
+  function QrCodeGenerator(){
+
+    history.push({
+          pathname: "/QrCodeGenerator",
+          // state: userId,
+        });
+  }
     var user = firebase.auth().currentUser.uid;
   UserConstituency(user);
   let rows_outline_btn = [];
@@ -162,7 +171,39 @@ export default function Voting() {
   const noElection = (
   <h1>Not Election for now</h1>
   )
+  function Vote() {
+    history.push("/Voting");
+  }
+  function SignOut() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push("/LoginVoter");
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+  }
+  function Result(){
+    history.push("/Result");
+  }
 
+  function VoterPortal() {
+    history.push("/VoterPortal");
+  }
+
+  function CanListVoter() {
+    history.push("/CanListVoter" /*,{userId}*/);
+  }
+
+  function QrCodeGenerator(){
+
+    history.push({
+          pathname: "/QrCodeGenerator",
+          // state: userId,
+        });
+  }
   const electionEnd = (
     <h1>Elections are finished now you can view the Results!!!</h1>
   )
@@ -179,7 +220,7 @@ export default function Voting() {
   }
   return (
     <div>
-      <div>
+            <div>
         <Router>
           <MDBNavbar className="navbar-voterProtal" dark expand="md">
             <MDBNavbarBrand>
@@ -207,9 +248,17 @@ export default function Voting() {
                   Vote
                 </MDBNavLink>
               </MDBNavItem>
-              
+              <MDBNavItem className="navItmes-voterProtal">
+                <MDBNavLink to="" onClick={QrCodeGenerator}>
+                  QR-Code
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem className="navItmes-voterProtal">
+                <MDBNavLink to="" onClick={Result}>
+                  Result
+                </MDBNavLink>
+              </MDBNavItem>
               </MDBNavbarNav>
-
               <MDBNavbarNav right>
                 <MDBNavItem className="navItmes-voterProtal">
                   <MDBNavLink to="" onClick={SignOut}>
@@ -221,6 +270,7 @@ export default function Voting() {
           </MDBNavbar>
         </Router>
       </div>
+
       <div>
       {r}
       </div>

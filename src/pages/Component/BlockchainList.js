@@ -29,62 +29,43 @@ export default function BlockchainList(){
     const [list, setlist] = useState([]);
 
 
-  function Vote() {
-    history.push("/Voting");
-  }
-
-  function SignOut() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        history.push("/LoginVoter");
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  }
-
-  function VoterPortal() {
-    history.push("/VoterPortal");
-  }
-
-  function CanListVoter() {
-    history.push("/CanListVoter");
-  }
-
+    function Vote() {
+      history.push("/Voting");
+    }
+    function SignOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          history.push("/LoginVoter");
+        })
+        .catch(error => {
+          alert(error.message);
+        });
+    }
+    function Result(){
+      history.push("/Result");
+    }
+  
+    function VoterPortal() {
+      history.push("/VoterPortal");
+    }
+  
+    function CanListVoter() {
+      history.push("/CanListVoter" /*,{userId}*/);
+    }
+  
+    function QrCodeGenerator(){
+  
+      history.push({
+            pathname: "/QrCodeGenerator",
+            // state: userId,
+          });
+    }
     var user = firebase.auth().currentUser.uid;
   UserConstituency(user);
   let rows_outline_btn = [];
 
-  // async function click(){
-  //   const uid = firebase.auth().currentUser.uid;
-    
-  //     console.log("Current User Id" + firebase.auth().currentUser.uid);
-  //     firebase
-  //     .database()
-  //     .ref("/voters/")
-  //     .on("value", (snapshot) => {
-  //         snapshot.forEach((v) => {
-  //             if(v.val().Uid == uid){
-
-  //                 console.log("If condition ke ander"+v.val());
-  //                 firebase.database().ref("/voters/" + uid).set({
-  //                     Profile: v.val().Profile,
-  //                     Uid: v.val().Uid,
-  //                     cnic: v.val().cnic,
-  //                     constituency: v.val().constituency,
-  //                     dob: v.val().dob,
-  //                     email: v.val().email,
-  //                     gender: v.val().gender,
-  //                     isRegistered: v.val().isRegistered,
-  //                     isVoted: "true",
-  //                     name: v.val().name,
-  //                 })
-  //             }
-  //         })
-  //     })
-  // }
   function UserConstituency(id) {
     firebase
       .database()
@@ -222,7 +203,7 @@ export default function BlockchainList(){
   ];
     return(
         <div>
-            <div>
+        <div>
         <Router>
           <MDBNavbar className="navbar-voterProtal" dark expand="md">
             <MDBNavbarBrand>
@@ -250,9 +231,17 @@ export default function BlockchainList(){
                   Vote
                 </MDBNavLink>
               </MDBNavItem>
-              
+              <MDBNavItem className="navItmes-voterProtal">
+                <MDBNavLink to="" onClick={QrCodeGenerator}>
+                  QR-Code
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem className="navItmes-voterProtal">
+                <MDBNavLink to="" onClick={Result}>
+                  Result
+                </MDBNavLink>
+              </MDBNavItem>
               </MDBNavbarNav>
-
               <MDBNavbarNav right>
                 <MDBNavItem className="navItmes-voterProtal">
                   <MDBNavLink to="" onClick={SignOut}>

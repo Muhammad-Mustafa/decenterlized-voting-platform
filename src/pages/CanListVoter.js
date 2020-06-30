@@ -29,6 +29,39 @@ export default function CanListVoter(props) {
       console.log("FromCanList", user);
     }
   });
+  function Vote() {
+    history.push("/Voting");
+  }
+  function SignOut() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push("/LoginVoter");
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+  }
+  function Result(){
+    history.push("/Result");
+  }
+
+  function VoterPortal() {
+    history.push("/VoterPortal");
+  }
+
+  function CanListVoter() {
+    history.push("/CanListVoter" /*,{userId}*/);
+  }
+
+  function QrCodeGenerator(){
+
+    history.push({
+          pathname: "/QrCodeGenerator",
+          // state: userId,
+        });
+  }
   var user = firebase.auth().currentUser.uid;
   UserConstituency(user);
   let rows_outline_btn = [];
@@ -78,26 +111,6 @@ export default function CanListVoter(props) {
   // const usrConstituency = UserConstituency(user);
 
   // let constituency = UserConstituency(props.location.state.userId);
-
-  function SignOut() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        history.push("/LoginVoter");
-      })
-      .catch(error => {
-        alert(error.message);
-      });
-  }
-
-  function VoterPortal() {
-    history.push("/VoterPortal");
-  }
-
-  function CanListVoter() {
-    history.push("/CanListVoter");
-  }
 
   const columns = [
     {
@@ -152,6 +165,21 @@ export default function CanListVoter(props) {
                     Candidates list
                   </MDBNavLink>
                 </MDBNavItem>
+                <MDBNavItem className="navItmes-voterProtal">
+                <MDBNavLink to="" onClick={Vote}>
+                  Vote
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem className="navItmes-voterProtal">
+                <MDBNavLink to="" onClick={QrCodeGenerator}>
+                  QR-Code
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem className="navItmes-voterProtal">
+                <MDBNavLink to="" onClick={Result}>
+                  Result
+                </MDBNavLink>
+              </MDBNavItem>
               </MDBNavbarNav>
               <MDBNavbarNav right>
                 <MDBNavItem className="navItmes-voterProtal">
