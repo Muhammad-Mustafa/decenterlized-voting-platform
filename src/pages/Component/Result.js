@@ -18,14 +18,14 @@ import { Line, Bar } from 'react-chartjs-2';
 export default function  Result(){
   let history = useHistory();
 
-const [election, setElection] = useState("deployed")
+const [election, setElection] = useState("")
 let r = null;
 
 useEffect(() => {
   console.log("Current User Id" + firebase.auth().currentUser.uid);
   firebase
     .database()
-    .ref("/election/")
+    .ref("/result/")
     .on("value",(snapshot) => {
       console.log(snapshot.val().status);
       setElection(snapshot.val().status);
@@ -66,8 +66,35 @@ function QrCodeGenerator(){
       });
 }
 
+const no  = (
+  <h1 style={{
+    
+    marginTop: "80px",
+    marginLeft: "50px",
+
+    marginLeft: "350px",
+                    
+    margindisplay: "flex",
+flexDirection: "column",
+
+alignContent: "center",
+alignItems: "center",
+}} >No Results to show at the moment!</h1>
+)
 const noResult  = (
-  <h1>No Results to show</h1>
+  <h1 style={{
+    
+    marginTop: "80px",
+    marginLeft: "50px",
+
+    marginLeft: "350px",
+                    
+    margindisplay: "flex",
+flexDirection: "column",
+
+alignContent: "center",
+alignItems: "center",
+}} >Please wait for the elections to end !!</h1>
 )
 const chart = (<div>
   <div>
@@ -96,10 +123,13 @@ title: {display: true, title: "Result"},
 </div>
 </div>)
 if(election == "deployed"){
+  r=chart;
+}else if(election == "finished"){
+  r=no;
+}
+else{  
   r= noResult;
 
-}else if(election == "finished"){
-  r=chart;
 }
 
 return(

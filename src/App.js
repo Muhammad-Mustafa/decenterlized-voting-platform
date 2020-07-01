@@ -25,6 +25,8 @@ import RegCam from "./pages/RegCam";
 import SucessfullVoting from './pages/SucessfullVoting'
 import Voting from "./pages/Voting";
 import QrcodeReader from "./pages/Component/QrcodeReader";
+import DeployResult from './pages/AdeployResult'
+import DeployElection from './pages/AdeployElection'
 
 import RegCamCandidate from "./pages/RegCamCandidate";
 // import { ProtectedRoute } from './pages/Protected.routes';
@@ -67,6 +69,9 @@ function App() {
           <Route exact path="/LoginCandidate" component={LoginCandidate} />
           <Route exact path="/AdminLogin" component={AdminLogin} />
           <Route exact path="/AdminPanal" component={AdminPanal} />
+          <Route exact path="/deployResult" component={DeployResult} />
+          <Route exact path="/deployElection" component={DeployElection} />
+
           <Route exact path="/LoginVoter" component={LoginVoter} />
           <Route exact path="/VoterPortal" component={VoterPortal} />
           <Route exact path="/CanListCan" component={CanListCan} />
@@ -75,6 +80,7 @@ function App() {
             path="/CandidateListAdmin"
             component={CandidateListAdmin}
           />
+          
           <Route
             exact
             path="/CandidateProfileFroVoter"

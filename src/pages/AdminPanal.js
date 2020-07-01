@@ -26,6 +26,7 @@ import {
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
 import "./../App.css";
 import * as firebase from "firebase";
+// import deployElection from "./Component/deployElection";
 
 export default function AdminPanal() {
   let history = useHistory();
@@ -65,6 +66,12 @@ export default function AdminPanal() {
   function ElectionCandidateListAdmin() {
     history.push("/ElectionCandidateListAdmin");
   }
+  function Election(){
+    history.push("/deployElection");
+}
+function Result(){
+  history.push("/deployResult");
+}
 
   const column = [
     {
@@ -113,6 +120,16 @@ export default function AdminPanal() {
                     Dashboard
                   </MDBNavLink>
                 </MDBNavItem>
+                <MDBNavItem className="navItmes-Adminpanal" >
+                  <MDBNavLink to="" onClick={Election}>
+                    Election
+                  </MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem className="navItmes-Adminpanal" >
+                  <MDBNavLink to="" onClick={Result}>
+                    Result
+                  </MDBNavLink>
+                </MDBNavItem>
                 <MDBNavItem className="navItmes-Adminpanal">
                   <MDBDropdown>
                     <MDBDropdownToggle nav caret>
@@ -132,6 +149,7 @@ export default function AdminPanal() {
                   </MDBDropdown>
                 </MDBNavItem>
               </MDBNavbarNav>
+              
               <MDBNavbarNav right>
                 <MDBNavItem className="navItmes-Adminpanal">
                   <MDBNavLink to="" onClick={SignOut}>

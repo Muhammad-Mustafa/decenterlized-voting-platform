@@ -165,11 +165,35 @@ export default function Voting() {
   )
 
   const sucessfullSubmit = (
-    <h1>You have sucessfully submited the vote !</h1>
+    <h1 style={{
+    
+      marginTop: "80px",
+      marginLeft: "50px",
+  
+      marginLeft: "350px",
+                      
+      margindisplay: "flex",
+  flexDirection: "column",
+  
+  alignContent: "center",
+  alignItems: "center",
+  }} >You have sucessfully submited the vote !</h1>
   )
 
   const noElection = (
-  <h1>Not Election for now</h1>
+  <h1 style={{
+    
+    marginTop: "80px",
+    marginLeft: "50px",
+
+    marginLeft: "350px",
+                    
+    margindisplay: "flex",
+flexDirection: "column",
+
+alignContent: "center",
+alignItems: "center",
+}} >Not Election for now</h1>
   )
   function Vote() {
     history.push("/Voting");
@@ -205,7 +229,19 @@ export default function Voting() {
         });
   }
   const electionEnd = (
-    <h1>Elections are finished now you can view the Results!!!</h1>
+    <h1  style={{
+    
+      marginTop: "80px",
+      marginLeft: "50px",
+  
+      marginLeft: "350px",
+                      
+      margindisplay: "flex",
+  flexDirection: "column",
+  
+  alignContent: "center",
+  alignItems: "center",
+  }} >Elections are finished now you can view the Results!!!</h1>
   )
   if(election == "deployed"){
     if(voted == "true"){
